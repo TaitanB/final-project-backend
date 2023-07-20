@@ -1,12 +1,20 @@
 const { Schema, model } = require("mongoose");
 
 const { handleMongooseError } = require("../helpers");
-const { emailRegex, passwordRegex, phoneRegex } = require("../constants/users");
+const {
+  nameRegex,
+  emailRegex,
+  passwordRegex,
+  phoneRegex,
+  birthdayRegex,
+  cityRegex,
+} = require("../constants/users");
 
 const userSchema = new Schema(
   {
     name: {
       type: String,
+      match: nameRegex,
       required: [true, "Name is required"],
     },
     email: {
@@ -30,6 +38,7 @@ const userSchema = new Schema(
     },
     birthday: {
       type: Date,
+      match: birthdayRegex,
       default: "",
     },
     phone: {
@@ -39,6 +48,7 @@ const userSchema = new Schema(
     },
     city: {
       type: String,
+      match: cityRegex,
       default: "",
     },
   },
