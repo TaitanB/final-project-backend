@@ -3,12 +3,12 @@ const User = require("../../models/user");
 const ctrlWrapper = require("../../decorators/ctrlWrapper");
 
 const updateUserData = async (req, res) => {
-  const { name, email, birthday, phone, city } = req.body;
+  const { name, birthday, phone, city } = req.body;
   const userId = req.user._id;
 
   const user = await User.findByIdAndUpdate(
     userId,
-    { name, email, birthday, phone, city },
+    { name, birthday, phone, city },
     { new: true }
   );
   res.json({ user });
