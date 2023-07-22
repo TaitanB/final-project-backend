@@ -8,7 +8,7 @@ const {
   updateUserData,
   // updateUserAvatar,
 } = require("../../controllers/auth");
-
+// const { uploadImage } = require("../../middlewares/uploadImage");
 const { userRegisterSchema, userLoginSchema } = require("../../schemas/users");
 
 const { validateBody } = require("../../decorators");
@@ -29,8 +29,11 @@ router.put("/", unauthorized, updateUserData);
 // router.patch(
 //   "/avatars",
 //   unauthorized,
-// upload.single("avatar"),
+//   uploadImage.single("avatar"),
 //   updateUserAvatar
 // );
+
+// router.post("/user", unauthorized, upload.single("avatar"), addAvatar);
+// router.post("/user", unauthorized, upload.single("recipeImg"), addAvatar);
 
 module.exports = router;

@@ -1,7 +1,41 @@
-// const multer = require("multer");
-// const { CloudinaryStorage } = require("multer-storage-cloudinary");
-// const cloudinary = require("../utils/cloudinary");
+const multer = require("multer");
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const cloudinary = require("../utils/cloudinary");
 // const HttpError = require("../helpers/HttpError");
+
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: async (req, file) => {
+    let folder;
+
+    if (file.fieldname === "avatars") {
+      folder = "avatars";
+    } else if (file.fieldname === "notices") {
+      folder = "notices";
+    } else {
+      folder = "misc";
+    }
+
+    return {
+      folder: folder,
+      allowed_formats: ["jpg", "jpeg", "png"],
+      public_id: file.originalname,
+      transformation: [
+        { width: 182, height: 182, crop: "thumb" },
+        { quality: "auto:best" },
+      ],
+    };
+  },
+});
+
+const uploadImage = multer({ storage });
+
+module.exports = uploadImage;
+
+// controller
+// const someFunc = async (req, res) => {
+//   const avatarURL = req.file.path;
+// };
 
 // const storage = new CloudinaryStorage({
 //   cloudinary: cloudinary,

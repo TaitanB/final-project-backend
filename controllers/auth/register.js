@@ -8,7 +8,7 @@ const { ctrlWrapper } = require("../../decorators");
 const { SECRET_KEY } = process.env;
 
 const register = async (req, res) => {
-  const { name, email, password } = req.body;
+  const { email, password } = req.body;
   const user = await User.findOne({ email });
 
   if (user) {
@@ -32,6 +32,7 @@ const register = async (req, res) => {
     user: {
       name: newUser.name,
       email: newUser.email,
+      newUser: newUser.newUser,
     },
   });
 };

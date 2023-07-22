@@ -4,10 +4,10 @@ const ctrlWrapper = require("../../decorators/ctrlWrapper");
 
 const updateUserData = async (req, res) => {
   const { name, birthday, phone, city } = req.body;
-  const userId = req.user._id;
+  const { _id } = req.user;
 
   const user = await User.findByIdAndUpdate(
-    userId,
+    _id,
     { name, birthday, phone, city },
     { new: true }
   );

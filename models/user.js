@@ -6,9 +6,8 @@ const {
   emailRegex,
   passwordRegex,
   phoneRegex,
-  birthdayRegex,
   cityRegex,
-} = require("../constants/users");
+} = require("../constants/constants");
 
 const userSchema = new Schema(
   {
@@ -38,7 +37,6 @@ const userSchema = new Schema(
     },
     birthday: {
       type: Date,
-      match: birthdayRegex,
       default: "",
     },
     phone: {
@@ -51,6 +49,14 @@ const userSchema = new Schema(
       match: cityRegex,
       default: "",
     },
+    pets: {
+      type: Array,
+      default: [],
+    },
+    // newUser: {
+    //   type: Boolean,
+    //   default: true,
+    // },
   },
   { versionKey: false, timestamps: true }
 );
