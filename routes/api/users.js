@@ -9,7 +9,11 @@ const {
   // updateUserAvatar,
 } = require("../../controllers/auth");
 // const { uploadImage } = require("../../middlewares/uploadImage");
-const { userRegisterSchema, userLoginSchema } = require("../../schemas/users");
+const {
+  userRegisterSchema,
+  userLoginSchema,
+  userUpdateSchema,
+} = require("../../schemas/users");
 
 const { validateBody } = require("../../decorators");
 const { unauthorized } = require("../../middlewares");
@@ -24,7 +28,7 @@ router.post("/logout", unauthorized, logout);
 
 router.get("/current", unauthorized, current);
 
-router.put("/", unauthorized, updateUserData);
+router.put("/", unauthorized, validateBody(userUpdateSchema), updateUserData);
 
 // router.patch(
 //   "/avatars",

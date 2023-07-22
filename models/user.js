@@ -36,7 +36,7 @@ const userSchema = new Schema(
       default: "",
     },
     birthday: {
-      type: Date,
+      type: String,
       default: "",
     },
     phone: {
@@ -50,7 +50,34 @@ const userSchema = new Schema(
       default: "",
     },
     pets: {
-      type: Array,
+      type: [
+        {
+          name: {
+            type: String,
+            match: nameRegex,
+            required: [true, "Name is required"],
+          },
+          date: {
+            type: String,
+            required: [true, "Date is required"],
+          },
+          type: {
+            type: String,
+            minlength: 2,
+            maxlength: 16,
+            required: [true, "Type is required"],
+          },
+          file: {
+            type: String,
+            default: "",
+            // required: true,
+          },
+          comments: {
+            type: String,
+            maxlength: 120,
+          },
+        },
+      ],
       default: [],
     },
     // newUser: {

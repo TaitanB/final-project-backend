@@ -1,19 +1,23 @@
 const { ctrlWrapper } = require("../../decorators");
-const Pet = require("../../models/pet");
 const User = require("../../models/user");
 
 const addPet = async (req, res) => {
-  const { _id, pets } = req.user;
+  const { _id: owner } = req.user;
+  const { name, date, type, file, comments } = req.body;
 
-  const pet = await Pet.create(req.body);
+  const newPet = {
+    name,
+    date,
+    type,
+    file,
+    comments,
+  };
 
-  const newPet = pet.toObject();
-  delete newPet.createdAt;
-  delete newPet.updatedAt;
-
-  pets.push({ ...newPet });
-
-  const user = await User.findByIdAndUpdate(_id, { pets }, { new: true });
+  const user = await User.findByIdAndUpdate(
+    owner,
+    { $push: { pets: newPet } },
+    { new: true }
+  );
 
   res.status(201).json(user.pets);
 };
