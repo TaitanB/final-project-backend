@@ -33,7 +33,7 @@ const userSchema = new Schema(
     },
     avatarURL: {
       type: String,
-      default: "",
+      default: "../tmp/avatar-default.png",
     },
     birthday: {
       type: String,
@@ -80,10 +80,14 @@ const userSchema = new Schema(
       ],
       default: [],
     },
-    // newUser: {
-    //   type: Boolean,
-    //   default: true,
-    // },
+    favorite: {
+      type: Array,
+      default: [],
+    },
+    newUser: {
+      type: Boolean,
+      default: true,
+    },
   },
   { versionKey: false, timestamps: true }
 );

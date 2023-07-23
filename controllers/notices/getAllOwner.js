@@ -2,13 +2,19 @@ const Notice = require("../../models/notice");
 const { ctrlWrapper } = require("../../decorators");
 const perPage = require("../../constants/constants");
 
-const getAll = async (req, res) => {
-  console.log("getAll");
+const getAllOwner = async (req, res) => {
+  console.log("getAllOwner");
+
+  const { _id: owner } = req.user;
   const { page = 1, limit = perPage, category, query } = req.query;
   const skip = (page - 1) * limit;
 
   const parameters = () => {
     let queryParameters;
+
+    if (owner) {
+      queryParameters = { owner };
+    }
 
     if (category) {
       queryParameters.category = category;
@@ -36,5 +42,5 @@ const getAll = async (req, res) => {
 };
 
 module.exports = {
-  getAll: ctrlWrapper(getAll),
+  getAllOwner: ctrlWrapper(getAllOwner),
 };

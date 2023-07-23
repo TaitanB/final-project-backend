@@ -50,6 +50,7 @@ const userUpdateSchema = Joi.object({
   phone: Joi.string().pattern(phoneRegex),
   city: Joi.string().pattern(cityRegex),
   pets: Joi.array(),
+  favorite: Joi.array(),
 });
 
 module.exports = {

@@ -5,8 +5,10 @@ const {
   getAll,
   getById,
   add,
-  updateStatus,
+  addFavorite,
   deleteById,
+  getAllOwner,
+  deleteFavorite,
 } = require("../../controllers/notices");
 
 const noticeSchema = require("../../schemas/notice");
@@ -15,13 +17,17 @@ const { unauthorized } = require("../../middlewares");
 
 const router = express.Router();
 
-router.get("/", unauthorized, getAll);
+router.get("/", getAll);
+
+router.get("/owner", unauthorized, getAllOwner);
 
 router.get("/:id", unauthorized, isValidId, getById);
 
 router.post("/", unauthorized, validateBody(noticeSchema), add);
 
-router.patch("/:id/favorite", unauthorized, isValidId, updateStatus);
+router.patch("/favorite/add/:id", unauthorized, isValidId, addFavorite);
+
+router.patch("/favorite/delete/:id", unauthorized, isValidId, deleteFavorite);
 
 router.delete("/:id", unauthorized, isValidId, deleteById);
 

@@ -5,6 +5,12 @@ const { nameRegex, cityRegex } = require("../constants/constants");
 
 const noticeSchema = new Schema(
   {
+    title: {
+      type: String,
+      min: 4,
+      maxlength: 30,
+      required: [true, "Title is required"],
+    },
     category: {
       type: String,
       enum: ["sell", "lost-found", "for-free", "my-pet"],
@@ -16,9 +22,9 @@ const noticeSchema = new Schema(
       required: [true, "Name is required"],
     },
     date: {
-      type: Date,
+      type: String,
       default: "",
-      // required: [true, "Date is required"],
+      required: [true, "Date is required"],
     },
     type: {
       type: String,
@@ -56,10 +62,6 @@ const noticeSchema = new Schema(
       type: String,
       maxlength: 120,
     },
-    favorite: {
-      type: Boolean,
-      default: false,
-    },
     owner: {
       type: Schema.Types.ObjectId,
       ref: "user",
@@ -68,6 +70,8 @@ const noticeSchema = new Schema(
   },
   { versionKey: false, timestamps: true }
 );
+
+noticeSchema.index({ title: "text", type: "text", comments: "text" });
 
 noticeSchema.post("save", handleMongooseError);
 
