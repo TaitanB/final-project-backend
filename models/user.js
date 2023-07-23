@@ -33,7 +33,8 @@ const userSchema = new Schema(
     },
     avatarURL: {
       type: String,
-      default: "../tmp/avatar-default.png",
+      default:
+        "https://res.cloudinary.com/dxr3bntge/image/upload/v1690100899/misc/avatar-default.png.png",
     },
     birthday: {
       type: String,

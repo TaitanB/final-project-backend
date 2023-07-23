@@ -6,9 +6,9 @@ const {
   logout,
   current,
   updateUserData,
-  // updateUserAvatar,
+  updateUserAvatar,
 } = require("../../controllers/auth");
-// const { uploadImage } = require("../../middlewares/uploadImage");
+const { uploadImage } = require("../../middlewares");
 const {
   userRegisterSchema,
   userLoginSchema,
@@ -30,12 +30,12 @@ router.get("/current", unauthorized, current);
 
 router.put("/", unauthorized, validateBody(userUpdateSchema), updateUserData);
 
-// router.patch(
-//   "/avatars",
-//   unauthorized,
-//   uploadImage.single("avatar"),
-//   updateUserAvatar
-// );
+router.patch(
+  "/avatars",
+  unauthorized,
+  uploadImage.single("avatar"),
+  updateUserAvatar
+);
 
 // router.post("/user", unauthorized, upload.single("avatar"), addAvatar);
 // router.post("/user", unauthorized, upload.single("recipeImg"), addAvatar);
