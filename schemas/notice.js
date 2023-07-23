@@ -38,7 +38,7 @@ const noticeSchema = Joi.object({
     }, "custom validation")
     .required(),
   type: Joi.string().min(2).max(16).required(),
-  file: Joi.string().required(),
+  file: Joi.string(),
   sex: Joi.string().valid("male", "female").required(),
   location: Joi.string().regex(cityRegex).required(),
   price: Joi.number().min(0.01).when("category", {
