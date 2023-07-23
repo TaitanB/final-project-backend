@@ -71,7 +71,7 @@ const userSchema = new Schema(
           file: {
             type: String,
             default: "",
-            // required: true,
+            required: true,
           },
           comments: {
             type: String,

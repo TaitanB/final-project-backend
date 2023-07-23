@@ -32,7 +32,7 @@ const petSchema = Joi.object({
     }, "custom validation")
     .required(),
   type: Joi.string().min(2).max(16).required(),
-  file: Joi.string(),
+  file: Joi.string().required(),
   comments: Joi.string().max(120).allow(""),
 });
 

@@ -37,7 +37,4 @@ router.patch(
   updateUserAvatar
 );
 
-// router.post("/user", unauthorized, upload.single("avatar"), addAvatar);
-// router.post("/user", unauthorized, upload.single("recipeImg"), addAvatar);
-
 module.exports = router;

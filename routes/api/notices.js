@@ -13,7 +13,7 @@ const {
 
 const noticeSchema = require("../../schemas/notice");
 const { validateBody } = require("../../decorators");
-const { unauthorized } = require("../../middlewares");
+const { unauthorized, uploadImage, parseBody } = require("../../middlewares");
 
 const router = express.Router();
 
@@ -23,7 +23,14 @@ router.get("/owner", unauthorized, getAllOwner);
 
 router.get("/:id", unauthorized, isValidId, getById);
 
-router.post("/", unauthorized, validateBody(noticeSchema), add);
+router.post(
+  "/",
+  unauthorized,
+  uploadImage.single("notice"),
+  parseBody,
+  validateBody(noticeSchema),
+  add
+);
 
 router.patch("/favorite/add/:id", unauthorized, isValidId, addFavorite);
 

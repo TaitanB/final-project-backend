@@ -3,7 +3,8 @@ const User = require("../../models/user");
 
 const addPet = async (req, res) => {
   const { _id: owner } = req.user;
-  const { name, date, type, file, comments } = req.body;
+  const { name, date, type, comments } = req.body;
+  const file = req.file.path;
 
   const newPet = {
     name,

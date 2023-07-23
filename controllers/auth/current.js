@@ -1,7 +1,8 @@
 const { ctrlWrapper } = require("../../decorators");
 
 const current = async (req, res) => {
-  const { name, email, birthday, phone, city, avatarURL, pets } = req.user;
+  const { name, email, birthday, phone, city, avatarURL, pets, favorite } =
+    req.user;
 
   res.json({
     name,
@@ -11,6 +12,7 @@ const current = async (req, res) => {
     city,
     avatarURL,
     pets,
+    favorite,
   });
 };
 

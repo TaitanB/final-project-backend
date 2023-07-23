@@ -13,7 +13,7 @@ const noticeSchema = new Schema(
     },
     category: {
       type: String,
-      enum: ["sell", "lost-found", "for-free", "my-pet"],
+      enum: ["sell", "lost-found", "for-free"],
       required: [true, "Category is required"],
     },
     name: {
@@ -35,7 +35,7 @@ const noticeSchema = new Schema(
     file: {
       type: String,
       default: "",
-      // required: true,
+      required: true,
     },
     sex: {
       type: String,
