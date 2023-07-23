@@ -1,0 +1,866 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Your Pet",
+    "description": "API for Your Pet application"
+  },
+  "security": [
+    {
+      "Bearer": []
+    }
+  ],
+  "consumes": ["application/json", "mulripart/form-data"],
+  "produces": ["application/json"],
+  "servers": [
+    { "url": "https://final-project-backend-4o0r.onrender.com" },
+    { "url": "https://localhost:3001" }
+  ],
+  "tags": [
+    {
+      "name": "users",
+      "description": "users endpoints"
+    },
+    {
+      "name": "notices",
+      "description": "notices endpoints"
+    },
+    {
+      "name": "pest",
+      "description": "pest endpoints"
+    }
+  ],
+  "paths": {
+    "/api/users/register": {
+      "post": {
+        "tags": ["users"],
+        "summary": "New user registration",
+        "produces": ["application/json"],
+        "requestBody": {
+          "description": "The request body",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterUser"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The user is registered",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request body"
+          },
+          "409": {
+            "description": "Email in use"
+          }
+        }
+      }
+    },
+    "/api/users/login": {
+      "post": {
+        "tags": ["users"],
+        "summary": "Login of an existing user",
+        "produces": ["application/json"],
+        "requestBody": {
+          "description": "The request body",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginUser"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Registered user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string",
+                      "description": "The JWT access token"
+                    },
+                    "user": {
+                      "$ref": "#/components/schemas/User"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request body"
+          },
+          "401": {
+            "description": "The email or password is incorrect"
+          }
+        }
+      }
+    },
+    "/api/users/logout": {
+      "post": {
+        "tags": ["users"],
+        "summary": "User logout",
+        "security": [{ "Bearer": [] }],
+        "produces": ["application/json"],
+        "responses": {
+          "204": {
+            "description": "Successful user logout"
+          },
+          "401": {
+            "description": "Not usersorized"
+          }
+        }
+      }
+    },
+    "/api/users/": {
+      "put": {
+        "tags": ["users"],
+        "summary": "Updating user information",
+        "security": [{ "Bearer": [] }],
+        "produces": ["application/json"],
+        "requestBody": {
+          "description": "The body of the user's data change request",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUser"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Data updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "user": {
+                      "$ref": "#/components/schemas/UpdatedUser"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not usersorized"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/users/current": {
+      "get": {
+        "tags": ["users"],
+        "summary": "Getting a valid user",
+        "security": [{ "Bearer": [] }],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Validated user data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CurrentUser"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not usersorized"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/users/avatar": {
+      "patch": {
+        "tags": ["users"],
+        "summary": "Changing the user's avatar",
+        "requestBody": {
+          "description": "The body of the user's avatar change request",
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "avatar": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [{ "Bearer": [] }],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "User avatar updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdatedUserAvatar"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid file's format or size"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/notices": {
+      "get": {
+        "tags": ["notices"],
+        "summary": "Retrieve a list of notices",
+        "security": [{ "Bearer": [] }],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Task"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unusersorized"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "post": {
+        "tags": ["notices"],
+        "summary": "Add new task",
+        "security": [{ "Bearer": [] }],
+        "produces": ["application/json"],
+        "requestBody": {
+          "description": "Task object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTask"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Task added",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Task"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unusersorized",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Invalid or expired token"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/notices/{id}": {
+      "delete": {
+        "tags": ["notices"],
+        "summary": "Delete a task by ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "ID of task to delete",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Task deleted successfully"
+          },
+          "404": {
+            "description": "Task not found"
+          },
+          "401": {
+            "description": "Unusersorized"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      },
+      "put": {
+        "tags": ["notices"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "description": "ID of the task to update"
+          }
+        ],
+        "summary": "Update an existing task",
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Task object that needs to be updated",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTask"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Task updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Task"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request body"
+          },
+          "404": {
+            "description": " Task's ID is invalid or not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/notices/{id}/status": {
+      "patch": {
+        "tags": ["notices"],
+        "summary": "Update the status of a task",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "description": "ID of the task to update"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "enum": ["toDo", "inProgress", "done"]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Task status updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Task"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request body"
+          },
+          "401": {
+            "description": "Not usersorized"
+          },
+          "404": {
+            "description": "Task not found"
+          }
+        }
+      }
+    },
+    "/api/notices/{id}/priority": {
+      "patch": {
+        "tags": ["notices"],
+        "summary": "Update priority of a task",
+        "description": "",
+        "operationId": "updateTaskPriority",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of task to update",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {
+          "description": "Updated priority of task",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "priority": {
+                    "type": "string",
+                    "enum": ["low", "medium", "high"],
+                    "description": "New priority of the task"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Task priority updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Task"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request body"
+          },
+          "401": {
+            "description": "Not usersorized"
+          },
+          "404": {
+            "description": "Task not found"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/api/reviews": {
+      "get": {
+        "tags": ["Reviews"],
+        "summary": "Get all reviews",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Review"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "RegisterUser": {
+        "type": "object",
+        "required": ["name", "email", "password"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "User name",
+            "example": "Elesh Norn"
+          },
+          "email": {
+            "type": "string",
+            "description": "User email",
+            "example": "eleshnorn@phyrexia.com"
+          },
+          "password": {
+            "type": "string",
+            "description": "User password",
+            "example": "1234abc"
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "User name",
+            "example": "Elesh Norn"
+          },
+          "email": {
+            "type": "string",
+            "description": "User email",
+            "example": "eleshnorn@phyrexia.com"
+          }
+        }
+      },
+      "LoginUser": {
+        "type": "object",
+        "required": ["email", "password"],
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User email",
+            "example": "eleshnorn@phyrexia.com"
+          },
+          "password": {
+            "type": "string",
+            "description": "User password",
+            "example": "1234abc"
+          }
+        }
+      },
+      "UpdateUser": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "User name",
+            "example": "Elesh Norn"
+          },
+          "email": {
+            "type": "string",
+            "description": "User email",
+            "example": "eleshnorn@phyrexia.com"
+          },
+          "birthday": {
+            "type": "Date",
+            "description": "User's birthday",
+            "example": "1208-03-10",
+            "default": ""
+          },
+          "phone": {
+            "type": "string",
+            "description": "User phone number",
+            "example": "001-7710",
+            "default": ""
+          },
+          "skype": {
+            "type": "string",
+            "description": "Username in Skype",
+            "example": "Sheoldred",
+            "default": ""
+          }
+        }
+      },
+      "UpdatedUser": {
+        "type": "object",
+        "properties": {
+          "avatarURL": {
+            "type": "string",
+            "description": "User picture",
+            "default": ""
+          },
+          "_id": {
+            "type": "string",
+            "description": "Unique user ID",
+            "example": "64497f45555522a6cae4e577"
+          },
+          "name": {
+            "type": "string",
+            "description": "User name",
+            "example": "Sheoldred"
+          },
+          "password": {
+            "type": "string",
+            "description": "User password",
+            "example": "1234abc"
+          },
+          "email": {
+            "type": "string",
+            "description": "User email",
+            "example": "sheoldred@phyrexia.com"
+          },
+          "createdAt": {
+            "type": "Date",
+            "description": "User account creation date",
+            "example": "2023-04-26T19:45:14.425Z"
+          },
+          "updatedAt": {
+            "type": "Date",
+            "description": "The date of the last update of the user's account",
+            "example": "2023-04-29T08:19:54.761Z"
+          },
+          "token": {
+            "type": "string",
+            "description": "The JWT access token"
+          },
+          "birthday": {
+            "type": "Date",
+            "description": "User's birthday",
+            "example": "1208-04-21T00:00:00.000Z",
+            "default": ""
+          },
+          "phone": {
+            "type": "string",
+            "description": "User phone number",
+            "example": "001-7710",
+            "default": ""
+          },
+          "skype": {
+            "type": "string",
+            "description": "Username in Skype",
+            "example": "Sheoldred",
+            "default": ""
+          }
+        }
+      },
+      "CurrentUser": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "User name",
+            "example": "Sorin Markov"
+          },
+          "email": {
+            "type": "string",
+            "description": "User email",
+            "example": "sorinmarkov@innistrad.com"
+          },
+          "birthday": {
+            "type": "Date",
+            "description": "User's birthday",
+            "example": "1611-02-10T00:00:00.000+00:00",
+            "default": ""
+          },
+          "phone": {
+            "type": "string",
+            "description": "User phone number",
+            "example": "555-0210",
+            "default": ""
+          },
+          "skype": {
+            "type": "string",
+            "description": "Username in Skype",
+            "example": "Sorin Markov",
+            "default": ""
+          },
+          "avatarURL": {
+            "type": "string",
+            "description": "User picture",
+            "default": ""
+          }
+        }
+      },
+      "UpdateUserAvatar": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Unique user ID",
+            "example": "64497f45555522a6cae4e577"
+          },
+          "avatarURL": {
+            "type": "string",
+            "description": "User picture",
+            "default": ""
+          }
+        }
+      },
+      "UpdatedUserAvatar": {
+        "type": "object",
+        "properties": {
+          "avatarURL": {
+            "type": "string",
+            "description": "User picture",
+            "default": ""
+          }
+        }
+      },
+      "Task": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Unique user ID",
+            "example": "64497f45555522a6cae4e577"
+          },
+          "title": {
+            "type": "string",
+            "description": "The title of the task",
+            "example": "Buy groceries",
+            "required": true
+          },
+          "status": {
+            "type": "string",
+            "description": "The status of the task",
+            "example": "toDo",
+            "enum": ["toDo", "inProgress", "done"],
+            "default": "toDo"
+          },
+          "priority": {
+            "type": "string",
+            "description": "The priority of the task",
+            "example": "low",
+            "enum": ["low", "medium", "high"],
+            "default": "low"
+          },
+          "date": {
+            "type": "object",
+            "description": "The start and end date of the task",
+            "properties": {
+              "start": {
+                "type": "string",
+                "format": "date-time",
+                "description": "The start date of the task",
+                "example": "2023-04-26T00:00:00Z",
+                "required": true
+              },
+              "end": {
+                "type": "string",
+                "format": "date-time",
+                "description": "The end date of the task",
+                "example": "2023-04-27T00:00:00Z",
+                "required": true
+              }
+            }
+          },
+          "owner": {
+            "type": "string",
+            "description": "The ID of the user who owns the task",
+            "example": "6166c9e6f50fb55161d82eb2"
+          }
+        }
+      },
+      "UpdateTask": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "The title of the task",
+            "example": "Buy groceries",
+            "required": true
+          },
+          "status": {
+            "type": "string",
+            "description": "The status of the task",
+            "example": "toDo",
+            "enum": ["toDo", "inProgress", "done"],
+            "default": "toDo"
+          },
+          "priority": {
+            "type": "string",
+            "description": "The priority of the task",
+            "example": "low",
+            "enum": ["low", "medium", "high"],
+            "default": "low"
+          },
+          "date": {
+            "type": "object",
+            "description": "The start and end date of the task",
+            "properties": {
+              "start": {
+                "type": "string",
+                "format": "date-time",
+                "description": "The start date of the task",
+                "example": "2023-04-26T00:00:00Z",
+                "required": true
+              },
+              "end": {
+                "type": "string",
+                "format": "date-time",
+                "description": "The end date of the task",
+                "example": "2023-04-27T00:00:00Z",
+                "required": true
+              }
+            }
+          }
+        }
+      },
+      "Review": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Unique user ID",
+            "example": "64497f45555522a6cae4e577"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the reviewer",
+            "example": "User Name"
+          },
+          "comment": {
+            "type": "string",
+            "description": "Reviews comment",
+            "example": "It's really help me to organize my time"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}

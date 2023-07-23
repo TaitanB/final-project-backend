@@ -5,7 +5,6 @@
     "name": "Oliver",
     "date": "15-06-2023",
     "type": "Cat",
-    "file": "",
     "sex": "male",
     "location": "Kyiv",
     "comments": "Lost orange cat in Central Park. Reward for his safe return."
@@ -16,7 +15,6 @@
     "name": "Buddy",
     "date": "10-07-2023",
     "type": "Dog",
-    "file": "",
     "sex": "male",
     "location": "Brovary",
     "comments": "Found a friendly dog in the neighborhood. Please contact me if he's yours."
@@ -27,7 +25,6 @@
     "name": "Puppies",
     "date": "20-06-2023",
     "type": "Dog",
-    "file": "",
     "sex": "female",
     "location": "Lviv",
     "price": 300,
@@ -39,7 +36,6 @@
     "name": "Kittens",
     "date": "25-06-2023",
     "type": "Cat",
-    "file": "",
     "sex": "female",
     "location": "Kharkiv",
     "price": 50,
@@ -51,7 +47,6 @@
     "name": "Coco",
     "date": "01-07-2023",
     "type": "Parrot",
-    "file": "",
     "sex": "male",
     "location": "Kyiv",
     "comments": "Lost parrot in Kyiv. He responds to the name Coco."
@@ -62,7 +57,6 @@
     "name": "Max",
     "date": "02-07-2023",
     "type": "Dog",
-    "file": "",
     "sex": "male",
     "location": "Ternopil",
     "comments": "Looking for a loving home for Max. He's a great companion."
@@ -73,7 +67,6 @@
     "name": "Kitten",
     "date": "05-07-2023",
     "type": "Cat",
-    "file": "",
     "sex": "female",
     "location": "Kharkiv",
     "comments": "Found this adorable kitten in the park. Please contact me if she's yours."
@@ -84,7 +77,6 @@
     "name": "Whiskers",
     "date": "10-07-2022",
     "type": "Cat",
-    "file": "",
     "sex": "male",
     "location": "Lviv",
     "price": 30,
@@ -96,22 +88,20 @@
     "name": "Rocky",
     "date": "15-07-2023",
     "type": "Dog",
-    "file": "",
     "sex": "male",
     "location": "Kyiv",
     "comments": "Lost dog named Rocky. He's very shy. Please help us find him."
   },
   {
-    "title": "Adorable Hamsters for Sale",
+    "title": "Adorable Hamster for Sale",
     "category": "sell",
-    "name": "Hamsters",
+    "name": "Homa",
     "date": "18-07-2022",
     "type": "Hamster",
-    "file": "",
     "sex": "female",
     "location": "Lviv",
     "price": 20,
-    "comments": "We have adorable hamsters looking for loving homes."
+    "comments": "We have adorable hamster looking for loving homes."
   },
   {
     "title": "Lost Cat - Please Help",
@@ -119,7 +109,6 @@
     "name": "Fluffy",
     "date": "01-07-2022",
     "type": "Cat",
-    "file": "",
     "sex": "female",
     "location": "Kharkiv",
     "comments": "Lost cat named Fluffy. She's very friendly. Please help us find her."
@@ -127,10 +116,9 @@
   {
     "title": "Found Cute Cat",
     "category": "lost-found",
-    "name": "Milo",
+    "name": "Luke",
     "date": "15-07-2022",
     "type": "Cat",
-    "file": "",
     "sex": "male",
     "location": "Kyiv",
     "comments": "Found this adorable cat in Central Park. If you are the owner, please contact me."
@@ -138,44 +126,40 @@
   {
     "title": "Sweet Dog Needs a Home",
     "category": "for-free",
-    "name": "Buddy",
+    "name": "Boy",
     "date": "02-07-2022",
     "type": "Dog",
-    "file": "",
     "sex": "male",
     "location": "Brovary",
-    "comments": "Looking for a loving home for Buddy. He is very friendly and playful."
+    "comments": "Looking for a loving home for Boy. He is very friendly and playful."
   },
   {
     "title": "Lost Dog in Kyiv",
     "category": "lost-found",
-    "name": "Rocky",
+    "name": "Bruno",
     "date": "15-06-2022",
     "type": "Dog",
-    "file": "",
     "sex": "male",
     "location": "Kyiv",
-    "comments": "Lost dog named Rocky in Kyiv. He's very shy. Please help us find him."
+    "comments": "Lost dog named Bruno in Kyiv. He's very shy. Please help us find him."
   },
   {
-    "title": "Adorable Puppies for Sale",
+    "title": "Adorable Puppie for Sale",
     "category": "sell",
-    "name": "Puppies",
+    "name": "Molly",
     "date": "20-06-2022",
     "type": "Dog",
-    "file": "",
     "sex": "female",
     "location": "Lviv",
     "price": 300,
     "comments": "We have a litter of adorable puppies available for sale."
   },
   {
-    "title": "Cute Kittens for Adoption",
+    "title": "Cute cat for Adoption",
     "category": "sell",
-    "name": "Kittens",
+    "name": "Bella",
     "date": "25-06-2022",
     "type": "Cat",
-    "file": "",
     "sex": "female",
     "location": "Kharkiv",
     "price": 50,
@@ -184,24 +168,22 @@
   {
     "title": "Lost Parrot in Kyiv",
     "category": "lost-found",
-    "name": "Parrot",
+    "name": "Kivi",
     "date": "01-07-2022",
     "type": "Parrot",
-    "file": "",
     "sex": "male",
     "location": "Kyiv",
-    "comments": "Lost parrot in Kyiv. He responds to the name Coco."
+    "comments": "Lost parrot in Kyiv. He responds to the name Kivi."
   },
   {
     "title": "Sweet Dog Needs a Home",
     "category": "for-free",
-    "name": "Max",
+    "name": "Zeus",
     "date": "02-07-2022",
     "type": "Dog",
-    "file": "",
     "sex": "male",
     "location": "Ternopil",
-    "comments": "Looking for a loving home for Max. He's a great companion."
+    "comments": "Looking for a loving home for Zeus. He's a great companion."
   },
   {
     "title": "Adorable Kitten Found",
@@ -209,7 +191,6 @@
     "name": "Kitten",
     "date": "05-07-2022",
     "type": "Cat",
-    "file": "",
     "sex": "female",
     "location": "Kharkiv",
     "comments": "Found this adorable kitten in the park. Please contact me if she's yours."
@@ -217,48 +198,43 @@
   {
     "title": "Friendly Cat for Adoption",
     "category": "sell",
-    "name": "Whiskers",
+    "name": "Max",
     "date": "10-07-2022",
     "type": "Cat",
-    "file": "",
     "sex": "male",
     "location": "Lviv",
     "price": 30,
-    "comments": "We have a friendly cat named Whiskers looking for a new home."
+    "comments": "We have a friendly cat named Max looking for a new home."
   },
   {
     "title": "Lost Dog - Please Help",
     "category": "lost-found",
-    "name": "Rocky",
+    "name": "Charlie",
     "date": "15-07-2022",
     "type": "Dog",
-    "file": "",
     "sex": "male",
     "location": "Kyiv",
-    "comments": "Lost dog named Rocky. He's very shy. Please help us find him."
+    "comments": "Lost dog named Charlie. He's very shy. Please help us find him."
   },
   {
     "title": "Adorable Hamsters for Sale",
-    "category": "sell",
+    "category": "for-free",
     "name": "Hamsters",
     "date": "18-07-2022",
     "type": "Hamster",
-    "file": "",
     "sex": "female",
     "location": "Lviv",
-    "price": 20,
     "comments": "We have adorable hamsters looking for loving homes."
   },
   {
     "title": "Lost Cat - Please Help",
     "category": "lost-found",
-    "name": "Fluffy",
+    "name": "Moozie",
     "date": "01-07-2022",
     "type": "Cat",
-    "file": "",
     "sex": "female",
     "location": "Kharkiv",
-    "comments": "Lost cat named Fluffy. She's very friendly. Please help us find her."
+    "comments": "Lost cat named Moozie. She's very friendly. Please help us find her."
   },
   {
     "title": "Found Cute Cat",
@@ -266,7 +242,6 @@
     "name": "Milo",
     "date": "15-07-2022",
     "type": "Cat",
-    "file": "",
     "sex": "male",
     "location": "Kyiv",
     "comments": "Found this adorable cat in Central Park. If you are the owner, please contact me."
@@ -274,12 +249,11 @@
   {
     "title": "Sweet Dog Needs a Home",
     "category": "for-free",
-    "name": "Buddy",
+    "name": "Daisy",
     "date": "02-07-2022",
     "type": "Dog",
-    "file": "",
-    "sex": "male",
+    "sex": "female",
     "location": "Brovary",
-    "comments": "Looking for a loving home for Buddy. He is very friendly and playful."
+    "comments": "Looking for a loving home for Daisy. He is very friendly and playful."
   }
 ]
