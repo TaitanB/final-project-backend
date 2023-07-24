@@ -5,11 +5,6 @@
     "title": "Your Pet",
     "description": "API for Your Pet application"
   },
-  "security": [
-    {
-      "Bearer": []
-    }
-  ],
   "consumes": ["application/json", "mulripart/form-data"],
   "produces": ["application/json"],
   "servers": [
