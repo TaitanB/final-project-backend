@@ -33,8 +33,15 @@ const login = async (req, res) => {
   res.json({
     token,
     user: {
+      _id: id,
       name: user.name,
       email: user.email,
+      birthday: user.birthday,
+      phone: user.phone,
+      city: user.city,
+      avatarURL: user.avatarURL,
+      pets: user.pets,
+      favorite: user.favorite,
     },
   });
 };

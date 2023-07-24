@@ -11,7 +11,14 @@ const updateUserData = async (req, res) => {
     { name, birthday, phone, city },
     { new: true }
   );
-  res.json({ user });
+
+  res.json({
+    _id,
+    name: user.name,
+    birthday: user.birthday,
+    phone: user.phone,
+    city: user.city,
+  });
 };
 
 const updateUserAvatar = async (req, res) => {

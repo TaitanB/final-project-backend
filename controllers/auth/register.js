@@ -30,8 +30,15 @@ const register = async (req, res) => {
   res.status(201).json({
     token,
     user: {
+      _id: id,
       name: userNew.name,
       email: userNew.email,
+      birthday: userNew.birthday,
+      phone: userNew.phone,
+      city: userNew.city,
+      avatarURL: userNew.avatarURL,
+      pets: userNew.pets,
+      favorite: userNew.favorite,
       newUser: userNew,
     },
   });

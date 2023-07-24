@@ -234,7 +234,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CurrentUser"
+                  "$ref": "#/components/schemas/UserResponse"
                 }
               }
             }
@@ -286,7 +286,7 @@
           "description": "Notice data",
           "required": true,
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
                 "$ref": "#/components/schemas/Notice"
               }
@@ -431,21 +431,6 @@
           }
         }
       },
-      "UserResponse": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": "User name",
-            "example": "Qwerty"
-          },
-          "email": {
-            "type": "string",
-            "description": "User email",
-            "example": "qwerty@mail.com"
-          }
-        }
-      },
       "LoginRequest": {
         "type": "object",
         "required": ["email", "password"],
@@ -453,6 +438,7 @@
           "email": {
             "type": "string",
             "description": "User email",
+            "format": "email",
             "example": "qwerty@mail.com"
           },
           "password": {
@@ -462,117 +448,14 @@
           }
         }
       },
-      "UpdateUserRequest": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": "User name",
-            "example": "Mango"
-          },
-          "birthday": {
-            "type": "string",
-            "description": "User's birthday",
-            "example": "21-08-2010",
-            "default": ""
-          },
-          "phone": {
-            "type": "string",
-            "description": "User's phone",
-            "example": "+380671234567",
-            "default": ""
-          },
-          "city": {
-            "type": "string",
-            "description": "User's city",
-            "example": "Lviv",
-            "default": ""
-          }
-        }
-      },
-      "UpdateUserResponse": {
+      "UserResponse": {
         "type": "object",
         "properties": {
           "_id": {
             "type": "string",
             "description": "User id",
-            "example": "1259385yjvdsa95kf865098"
+            "example": "nfuwjhretyhbvcbuiwrhty"
           },
-          "avatarURL": {
-            "type": "string",
-            "description": "User photo"
-          },
-          "name": {
-            "type": "string",
-            "description": "User name",
-            "example": "Mango"
-          },
-          "email": {
-            "type": "string",
-            "description": "User email",
-            "example": "qwerty@mail.com"
-          },
-          "birthday": {
-            "type": "string",
-            "description": "User's birthday",
-            "example": "21-08-2010",
-            "default": ""
-          },
-          "phone": {
-            "type": "string",
-            "description": "User's phone",
-            "example": "+380671234567",
-            "default": ""
-          },
-          "city": {
-            "type": "string",
-            "description": "User's city",
-            "example": "Lviv",
-            "default": ""
-          },
-          "token": {
-            "type": "string",
-            "description": "The JWT access token"
-          },
-          "createdAt": {
-            "type": "Date",
-            "description": "User account creation date",
-            "example": "2023-07-23T20:00:30.149+00:00"
-          },
-          "updatedAt": {
-            "type": "Date",
-            "description": "The date of the last update of the user's account",
-            "example": "2023-07-23T22:28:45.862+00:00"
-          }
-        }
-      },
-      "UpdateUserAvatarRequest": {
-        "type": "object",
-        "required": ["avatarURL"],
-        "properties": {
-          "_id": {
-            "type": "string",
-            "description": "User id",
-            "example": "64497f45555522a6cae4e577"
-          },
-          "avatarURL": {
-            "type": "string",
-            "description": "User photo"
-          }
-        }
-      },
-      "UpdateUserAvatarResponse": {
-        "type": "object",
-        "properties": {
-          "avatarURL": {
-            "type": "string",
-            "description": "User photo"
-          }
-        }
-      },
-      "CurrentUser": {
-        "type": "object",
-        "properties": {
           "name": {
             "type": "string",
             "description": "User name",
@@ -656,6 +539,92 @@
           }
         }
       },
+      "UpdateUserRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "User name",
+            "example": "Mango"
+          },
+          "birthday": {
+            "type": "string",
+            "description": "User's birthday",
+            "example": "21-08-2010",
+            "default": ""
+          },
+          "phone": {
+            "type": "string",
+            "description": "User's phone",
+            "example": "+380671234567",
+            "default": ""
+          },
+          "city": {
+            "type": "string",
+            "description": "User's city",
+            "example": "Lviv",
+            "default": ""
+          }
+        }
+      },
+      "UpdateUserResponse": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "User id",
+            "example": "1259385yjvdsa95kf865098"
+          },
+          "name": {
+            "type": "string",
+            "description": "User name",
+            "example": "Mango"
+          },
+          "birthday": {
+            "type": "string",
+            "description": "User's birthday",
+            "example": "21-08-2010",
+            "default": ""
+          },
+          "phone": {
+            "type": "string",
+            "description": "User's phone",
+            "example": "+380671234567",
+            "default": ""
+          },
+          "city": {
+            "type": "string",
+            "description": "User's city",
+            "example": "Lviv",
+            "default": ""
+          }
+        }
+      },
+      "UpdateUserAvatarRequest": {
+        "type": "object",
+        "required": ["avatarURL"],
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "User id",
+            "example": "64497f45555522a6cae4e577"
+          },
+          "avatarURL": {
+            "type": "string",
+            "description": "User photo",
+            "format": "binary"
+          }
+        }
+      },
+      "UpdateUserAvatarResponse": {
+        "type": "object",
+        "properties": {
+          "avatarURL": {
+            "type": "string",
+            "description": "User photo"
+          }
+        }
+      },
 
       "Notice": {
         "type": "object",
@@ -703,7 +672,8 @@
           },
           "file": {
             "type": "string",
-            "description": "User's pet photo"
+            "description": "User's pet photo",
+            "format": "binary"
           },
           "sex": {
             "type": "string",
@@ -728,9 +698,15 @@
             "type": "string",
             "description": "The id of the user who owns the notices",
             "example": "64bd86de7f96cefd06432c5d"
+          },
+          "createdAt": {
+            "type": "Date",
+            "description": "Notice creation date",
+            "example": "2023-07-23T20:00:30.149+00:00"
           }
         }
       },
+
       "Favorites": {
         "type": "array",
         "items": {
