@@ -35,6 +35,7 @@ const userSchema = new Schema(
       type: String,
       default:
         "https://res.cloudinary.com/dxr3bntge/image/upload/v1690100899/misc/avatar-default.png.png",
+      required: true,
     },
     birthday: {
       type: String,

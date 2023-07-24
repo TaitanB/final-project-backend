@@ -27,7 +27,7 @@ router.get("/favorite", unauthorized, getFavorite);
 router.get("/:id", unauthorized, isValidId, getById);
 
 router.post(
-  "/",
+  "/owner",
   unauthorized,
   uploadImage.single("notice"),
   parseBody,

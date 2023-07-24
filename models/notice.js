@@ -40,16 +40,12 @@ const noticeSchema = new Schema(
     sex: {
       type: String,
       enum: ["male", "female"],
-      required: function () {
-        return ["sell", "lost-found", "for-free"].includes(this.category);
-      },
+      required: true,
     },
     location: {
       type: String,
       match: cityRegex,
-      required: function () {
-        return ["sell", "lost-found", "for-free"].includes(this.category);
-      },
+      required: true,
     },
     price: {
       type: Number,

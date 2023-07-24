@@ -253,7 +253,6 @@
       "get": {
         "tags": ["Notices"],
         "summary": "Get notices",
-        "security": [{ "Bearer": [] }],
         "produces": ["application/json"],
         "responses": {
           "200": {
@@ -276,6 +275,35 @@
             "description": "Internal server error"
           }
         }
+      }
+    },
+    "/api/notices/owner": {
+      "get": {
+        "tags": ["Notices"],
+        "summary": "Get notices",
+        "security": [{ "Bearer": [] }],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Notice"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
       },
       "post": {
         "tags": ["Notices"],
@@ -288,7 +316,7 @@
           "content": {
             "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/Notice"
+                "$ref": "#/components/schemas/NoticeRequest"
               }
             }
           }
@@ -345,12 +373,45 @@
             "description": "Notice not found"
           }
         }
+      },
+      "get": {
+        "tags": ["Notices"],
+        "summary": "Get a notices by id",
+        "security": [{ "Bearer": [] }],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Get a notices by id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NoticeOwner"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized"
+          },
+          "404": {
+            "description": "Notice not found"
+          }
+        }
       }
     },
     "/api/notices/favorite/add/{id}": {
       "patch": {
         "tags": ["Notices"],
         "summary": "Add notice to favorite",
+        "security": [{ "Bearer": [] }],
         "parameters": [
           {
             "in": "path",
@@ -384,6 +445,7 @@
       "patch": {
         "tags": ["Notices"],
         "summary": "Add notice to favorite",
+        "security": [{ "Bearer": [] }],
         "parameters": [
           {
             "in": "path",
@@ -405,6 +467,107 @@
           }
         }
       }
+    },
+    "/api/notices/favorite": {
+      "get": {
+        "tags": ["Notices"],
+        "summary": "Get notices",
+        "security": [{ "Bearer": [] }],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Notice"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+
+    "/api/users/pets": {
+      "patch": {
+        "tags": ["Pets"],
+        "summary": "Add new pet",
+        "security": [{ "Bearer": [] }],
+        "produces": ["application/json"],
+        "requestBody": {
+          "description": "Pet data",
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PetRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Pet added",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PetResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Invalid token"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/users/pets/{id}": {
+      "patch": {
+        "tags": ["Pets"],
+        "summary": "Delete a pet by id",
+        "security": [{ "Bearer": [] }],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Pet's id to delete",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Pet deleted successfully"
+          },
+          "401": {
+            "description": "Not authorized"
+          },
+          "404": {
+            "description": "Pet not found"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -416,6 +579,8 @@
           "name": {
             "type": "string",
             "description": "User name",
+            "minLength": 2,
+            "maxLength": 16,
             "example": "Qwerty"
           },
           "email": {
@@ -427,7 +592,10 @@
           "password": {
             "type": "string",
             "description": "User password",
-            "example": "Qwerty111"
+            "minLength": 6,
+            "maxLength": 16,
+            "pattern": "^(?=.*[a-z])(?=.*[A-Z])(?=.*d)",
+            "example": "Qwerty123"
           }
         }
       },
@@ -444,7 +612,10 @@
           "password": {
             "type": "string",
             "description": "User password",
-            "example": "Qwerty111"
+            "minLength": 6,
+            "maxLength": 16,
+            "pattern": "^(?=.*[a-z])(?=.*[A-Z])(?=.*d)",
+            "example": "Qwerty123"
           }
         }
       },
@@ -545,23 +716,28 @@
           "name": {
             "type": "string",
             "description": "User name",
+            "minLength": 2,
+            "maxLength": 16,
             "example": "Mango"
           },
           "birthday": {
             "type": "string",
-            "description": "User's birthday",
+            "description": "User's birthday. Please use DD-MM-YYYY",
+            "pattern": "^\\d{2}-\\d{2}-\\d{4}$",
             "example": "21-08-2010",
             "default": ""
           },
           "phone": {
             "type": "string",
             "description": "User's phone",
+            "pattern": "^+380d{9}$",
             "example": "+380671234567",
             "default": ""
           },
           "city": {
             "type": "string",
             "description": "User's city",
+            "pattern": "^[A-Za-zs]+(?:,s*[A-Za-zs]+)*$",
             "example": "Lviv",
             "default": ""
           }
@@ -626,7 +802,7 @@
         }
       },
 
-      "Notice": {
+      "NoticeRequest": {
         "type": "object",
         "required": [
           "title",
@@ -636,24 +812,93 @@
           "type",
           "file",
           "sex",
-          "location"
+          "location",
+          "owner"
         ],
         "properties": {
-          "_id": {
-            "type": "string",
-            "description": "Notice id",
-            "example": "64bd8b3616d78dc14eaadec4"
-          },
           "title": {
             "type": "string",
-            "description": "The title of the notices",
+            "description": "The title of the notice",
+            "minLength": 4,
+            "maxLength": 30,
             "example": "Lost Cat in Central Park"
           },
           "category": {
             "type": "string",
-            "description": "The category of the notices",
-            "example": "lost-found",
-            "enum": ["sell", "lost-found", "for-free"]
+            "description": "The category of the notice",
+            "enum": ["sell", "lost-found", "for-free"],
+            "example": "lost-found"
+          },
+          "name": {
+            "type": "string",
+            "description": "User's pet name",
+            "pattern": "^[A-Za-z]{2,16}$",
+            "example": "Caty"
+          },
+          "date": {
+            "type": "string",
+            "description": "User's pet birthday",
+            "example": "29-08-2020"
+          },
+          "type": {
+            "type": "string",
+            "description": "User's pet type",
+            "minLength": 2,
+            "maxLength": 16,
+            "example": "Cat"
+          },
+          "file": {
+            "type": "string",
+            "format": "binary",
+            "description": "User's pet photo",
+            "example": "https://example.com/pet.jpg"
+          },
+          "sex": {
+            "type": "string",
+            "description": "The pet's sex",
+            "enum": ["male", "female"],
+            "example": "male"
+          },
+          "location": {
+            "type": "string",
+            "description": "The pet's location",
+            "example": "Kyiv"
+          },
+          "price": {
+            "type": "number",
+            "description": "Pet's price. Required if category is sell",
+            "minimum": 0.01,
+            "example": 100
+          },
+          "comments": {
+            "type": "string",
+            "description": "User's comments",
+            "maxLength": 120
+          },
+          "owner": {
+            "type": "string",
+            "description": "The id of the user who owns the notice",
+            "example": "64bd86de7f96cefd06432c5d"
+          },
+          "createdAt": {
+            "type": "Date",
+            "description": "Notice creation date",
+            "example": "2023-07-23T20:00:30.149+00:00"
+          }
+        }
+      },
+      "Notice": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "The title of the notice",
+            "example": "Lost Cat in Central Park"
+          },
+          "category": {
+            "type": "string",
+            "description": "The category of the notice",
+            "example": "lost-found"
           },
           "name": {
             "type": "string",
@@ -673,30 +918,30 @@
           "file": {
             "type": "string",
             "description": "User's pet photo",
-            "format": "binary"
+            "example": "https://example.com/pet.jpg"
           },
           "sex": {
             "type": "string",
             "description": "The pet's sex",
-            "example": "male",
-            "enum": ["male", "female"]
+            "example": "male"
           },
           "location": {
             "type": "string",
             "description": "The pet's location",
             "example": "Kyiv"
           },
+          "price": {
+            "type": "number",
+            "description": "Pet's price. Required if category is sell",
+            "example": 100
+          },
           "comments": {
             "type": "string",
             "description": "User's comments"
           },
-          "price": {
-            "type": "number",
-            "description": "Pet's price"
-          },
           "owner": {
             "type": "string",
-            "description": "The id of the user who owns the notices",
+            "description": "The id of the user who owns the notice",
             "example": "64bd86de7f96cefd06432c5d"
           },
           "createdAt": {
@@ -706,7 +951,6 @@
           }
         }
       },
-
       "Favorites": {
         "type": "array",
         "items": {
@@ -717,6 +961,182 @@
               "description": "User's favorite notice id",
               "example": "32143dshtuv2dfyuijhgf45474"
             }
+          }
+        }
+      },
+
+      "PetRequest": {
+        "type": "object",
+        "required": ["name", "date", "type", "file", "sex", "owner"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "User's pet name",
+            "pattern": "^[A-Za-z]{2,16}$",
+            "example": "Caty"
+          },
+          "date": {
+            "type": "string",
+            "description": "User's pet birthday",
+            "example": "29-08-2020"
+          },
+          "type": {
+            "type": "string",
+            "description": "User's pet type",
+            "minLength": 2,
+            "maxLength": 16,
+            "example": "Cat"
+          },
+          "file": {
+            "type": "string",
+            "format": "binary",
+            "description": "User's pet photo",
+            "example": "https://example.com/pet.jpg"
+          },
+          "sex": {
+            "type": "string",
+            "description": "The pet's sex",
+            "enum": ["male", "female"],
+            "example": "male"
+          },
+          "comments": {
+            "type": "string",
+            "description": "User's comments",
+            "maxLength": 120
+          },
+          "owner": {
+            "type": "string",
+            "description": "The id of the user who owns the notice",
+            "example": "64bd86de7f96cefd06432c5d"
+          },
+          "createdAt": {
+            "type": "Date",
+            "description": "Notice creation date",
+            "example": "2023-07-23T20:00:30.149+00:00"
+          }
+        }
+      },
+      "PetResponse": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "User's pet name",
+            "example": "Caty"
+          },
+          "date": {
+            "type": "string",
+            "description": "User's pet birthday",
+            "example": "29-08-2020"
+          },
+          "type": {
+            "type": "string",
+            "description": "User's pet type",
+            "example": "Cat"
+          },
+          "file": {
+            "type": "string",
+            "description": "User's pet photo",
+            "example": "https://example.com/pet.jpg"
+          },
+          "comments": {
+            "type": "string",
+            "description": "User's comments"
+          },
+          "owner": {
+            "type": "string",
+            "description": "The id of the user who owns the notice",
+            "example": "64bd86de7f96cefd06432c5d"
+          },
+          "createdAt": {
+            "type": "Date",
+            "description": "Notice creation date",
+            "example": "2023-07-23T20:00:30.149+00:00"
+          }
+        }
+      },
+      "NoticeOwner": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "The title of the notice",
+            "example": "Lost Cat in Central Park"
+          },
+          "category": {
+            "type": "string",
+            "description": "The category of the notice",
+            "example": "lost-found"
+          },
+          "name": {
+            "type": "string",
+            "description": "User's pet name",
+            "example": "Caty"
+          },
+          "date": {
+            "type": "string",
+            "description": "User's pet birthday",
+            "example": "29-08-2020"
+          },
+          "type": {
+            "type": "string",
+            "description": "User's pet type",
+            "example": "Cat"
+          },
+          "file": {
+            "type": "string",
+            "description": "User's pet photo",
+            "example": "https://example.com/pet.jpg"
+          },
+          "sex": {
+            "type": "string",
+            "description": "The pet's sex",
+            "example": "male"
+          },
+          "location": {
+            "type": "string",
+            "description": "The pet's location",
+            "example": "Kyiv"
+          },
+          "price": {
+            "type": "number",
+            "description": "Pet's price. Required if category is sell",
+            "example": 100
+          },
+          "comments": {
+            "type": "string",
+            "description": "User's comments"
+          },
+          "owner": {
+            "type": "object",
+            "properties": {
+              "_id": {
+                "type": "string",
+                "description": "User id",
+                "example": "nfuwjhretyhbvcbuiwrhty"
+              },
+              "name": {
+                "type": "string",
+                "description": "User name",
+                "example": "Mango"
+              },
+              "email": {
+                "type": "string",
+                "description": "User email",
+                "example": "mango@mail.com"
+              },
+              "phone": {
+                "type": "string",
+                "description": "User's phone",
+                "example": "+380671234567",
+                "default": ""
+              }
+            }
+          },
+          "createdAt": {
+            "type": "Date",
+            "description": "Notice creation date",
+            "example": "2023-07-23T20:00:30.149+00:00"
           }
         }
       }
