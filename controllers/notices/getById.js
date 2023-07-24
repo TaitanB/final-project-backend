@@ -8,12 +8,12 @@ const getById = async (req, res) => {
 
   const result = await Notice.findOne({
     $and: [{ _id: noticeId }, { owner }],
-  });
+  }).populate("owner", "name email phone");
 
   if (!result) {
     throw HttpError(404, "Not found");
   }
-
+  console.log(result);
   res.json(result);
 };
 
