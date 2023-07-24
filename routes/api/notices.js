@@ -9,6 +9,7 @@ const {
   deleteById,
   getAllOwner,
   deleteFavorite,
+  getFavorite,
 } = require("../../controllers/notices");
 
 const noticeSchema = require("../../schemas/notice");
@@ -20,6 +21,8 @@ const router = express.Router();
 router.get("/", getAll);
 
 router.get("/owner", unauthorized, getAllOwner);
+
+router.get("/favorite", unauthorized, getFavorite);
 
 router.get("/:id", unauthorized, isValidId, getById);
 

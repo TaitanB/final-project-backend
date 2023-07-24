@@ -1,14 +1,13 @@
 const Notice = require("../../models/notice");
 const { ctrlWrapper } = require("../../decorators");
-const perPage = require("../../constants/constants");
+const { perPage } = require("../../constants/constants");
 
 const getAll = async (req, res) => {
-  console.log("getAll");
   const { page = 1, limit = perPage, category, query } = req.query;
   const skip = (page - 1) * limit;
 
   const parameters = () => {
-    let queryParameters;
+    const queryParameters = {};
 
     if (category) {
       queryParameters.category = category;

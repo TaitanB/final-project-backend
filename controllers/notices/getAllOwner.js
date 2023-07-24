@@ -1,10 +1,8 @@
 const Notice = require("../../models/notice");
 const { ctrlWrapper } = require("../../decorators");
-const perPage = require("../../constants/constants");
+const { perPage } = require("../../constants/constants");
 
 const getAllOwner = async (req, res) => {
-  console.log("getAllOwner");
-
   const { _id: owner } = req.user;
   const { page = 1, limit = perPage, category, query } = req.query;
   const skip = (page - 1) * limit;
