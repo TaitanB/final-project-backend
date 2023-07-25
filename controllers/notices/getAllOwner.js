@@ -19,11 +19,7 @@ const getAllOwner = async (req, res) => {
     }
 
     if (query) {
-      queryParameters.$or = [
-        { title: { $regex: query, $options: "i" } },
-        { type: { $regex: query, $options: "i" } },
-        { comments: { $regex: query, $options: "i" } },
-      ];
+      queryParameters.title = { $regex: query, $options: "i" };
     }
 
     return queryParameters;
@@ -31,10 +27,14 @@ const getAllOwner = async (req, res) => {
 
   const queryParameters = parameters();
 
-  const result = await Notice.find(queryParameters, "-createdAt -updatedAt", {
-    skip,
-    limit,
-  });
+  const result = await Notice.find(
+    queryParameters,
+    "-name -type -comments -createdAt -updatedAt",
+    {
+      skip,
+      limit,
+    }
+  );
 
   res.json(result);
 };

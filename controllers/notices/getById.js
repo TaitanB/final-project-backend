@@ -4,11 +4,11 @@ const { ctrlWrapper } = require("../../decorators");
 
 const getById = async (req, res) => {
   const { id: noticeId } = req.params;
-  const { _id: owner } = req.user;
 
-  const result = await Notice.findOne({
-    $and: [{ _id: noticeId }, { owner }],
-  }).populate("owner", "name email phone");
+  const result = await Notice.findOne({ _id: noticeId }, "-updatedAt").populate(
+    "owner",
+    "name email phone"
+  );
 
   if (!result) {
     throw HttpError(404, "Not found");

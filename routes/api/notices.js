@@ -24,7 +24,7 @@ router.get("/owner", unauthorized, getAllOwner);
 
 router.get("/favorite", unauthorized, getFavorite);
 
-router.get("/:id", unauthorized, isValidId, getById);
+router.get("/:id", isValidId, getById);
 
 router.post(
   "/owner",
