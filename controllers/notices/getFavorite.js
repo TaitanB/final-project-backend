@@ -21,7 +21,7 @@ const getFavorite = async (req, res) => {
     { skip, limit }
   );
 
-  res.status(200).json({ total, notice: favoriteNotices });
+  res.status(200).json({ total, notices: favoriteNotices });
 };
 
 module.exports = {

@@ -23,6 +23,14 @@
     {
       "name": "Pets",
       "description": "Pets endpoints"
+    },
+    {
+      "name": "Friends",
+      "description": "Friends endpoints"
+    },
+    {
+      "name": "News",
+      "description": "News endpoints"
     }
   ],
   "paths": {
@@ -590,6 +598,71 @@
           }
         }
       }
+    },
+
+    "/api/sponsors": {
+      "get": {
+        "tags": ["Friends"],
+        "summary": "Get friends",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "sponsors": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Friend"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/api/news": {
+      "get": {
+        "tags": ["News"],
+        "summary": "Get news",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "total": {
+                      "type": "string",
+                      "description": "452"
+                    },
+                    "articles": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Article"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1145,6 +1218,89 @@
             "type": "Date",
             "description": "Notice creation date",
             "example": "2023-07-23T20:00:30.149+00:00"
+          }
+        }
+      },
+
+      "Article": {
+        "type": "object",
+        "properties": {
+          "imgUrl": {
+            "type": "string",
+            "format": "uri"
+          },
+          "title": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "id": {
+            "type": "string"
+          }
+        }
+      },
+
+      "Friend": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "addressUrl": {
+            "type": "string",
+            "format": "uri"
+          },
+          "imageUrl": {
+            "type": "string",
+            "format": "uri"
+          },
+          "address": {
+            "type": "string"
+          },
+          "workDays": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string"
+                },
+                "isOpen": {
+                  "type": "boolean"
+                },
+                "from": {
+                  "type": "string",
+                  "format": "time"
+                },
+                "to": {
+                  "type": "string",
+                  "format": "time"
+                }
+              }
+            }
+          },
+          "phone": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
           }
         }
       }

@@ -18,7 +18,7 @@ const getAllOwner = async (req, res) => {
     { skip, limit }
   );
 
-  res.status(200).json({ total, notice: result });
+  res.status(200).json({ total, notices: result });
 };
 
 module.exports = {

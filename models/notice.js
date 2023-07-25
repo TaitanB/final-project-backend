@@ -67,7 +67,7 @@ const noticeSchema = new Schema(
   { versionKey: false, timestamps: true }
 );
 
-noticeSchema.index({ title: "text", type: "text", comments: "text" });
+noticeSchema.index({ title: "text" });
 
 noticeSchema.post("save", handleMongooseError);
 
