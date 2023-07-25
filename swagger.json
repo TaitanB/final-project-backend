@@ -255,16 +255,25 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Notice"
+                  "type": "object",
+                  "properties": {
+                    "total": {
+                      "type": "string",
+                      "description": "452"
+                    },
+                    "notices": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/NoticeResponse"
+                      }
+                    }
                   }
                 }
               }
             }
           },
           "401": {
-            "description": "Unusersorized"
+            "description": "Not authorized"
           },
           "500": {
             "description": "Internal server error"
@@ -284,9 +293,18 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Notice"
+                  "type": "object",
+                  "properties": {
+                    "total": {
+                      "type": "string",
+                      "description": "452"
+                    },
+                    "notices": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/NoticeResponse"
+                      }
+                    }
                   }
                 }
               }
@@ -388,7 +406,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/NoticeOwner"
+                  "$ref": "#/components/schemas/NoticeOne"
                 }
               }
             }
@@ -475,9 +493,18 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Notice"
+                  "type": "object",
+                  "properties": {
+                    "total": {
+                      "type": "string",
+                      "description": "452"
+                    },
+                    "notices": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/NoticeResponse"
+                      }
+                    }
                   }
                 }
               }
@@ -882,9 +909,59 @@
           }
         }
       },
-      "Notice": {
+      "NoticeResponse": {
         "type": "object",
         "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Notice id",
+            "example": "1h23u45iumyhigjfsaitfyg"
+          },
+          "title": {
+            "type": "string",
+            "description": "The title of the notice",
+            "example": "Lost Cat in Central Park"
+          },
+          "category": {
+            "type": "string",
+            "description": "The category of the notice",
+            "example": "lost-found"
+          },
+          "date": {
+            "type": "string",
+            "description": "User's pet birthday",
+            "example": "29-08-2020"
+          },
+          "file": {
+            "type": "string",
+            "description": "User's pet photo",
+            "example": "https://example.com/pet.jpg"
+          },
+          "sex": {
+            "type": "string",
+            "description": "The pet's sex",
+            "example": "male"
+          },
+          "location": {
+            "type": "string",
+            "description": "The pet's location",
+            "example": "Kyiv"
+          },
+          "owner": {
+            "type": "string",
+            "description": "The id of the user who owns the notice",
+            "example": "64bd86de7f96cefd06432c5d"
+          }
+        }
+      },
+      "NoticeOne": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Notice id",
+            "example": "1h23u45iumyhigjfsaitfyg"
+          },
           "title": {
             "type": "string",
             "description": "The title of the notice",
@@ -935,9 +1012,30 @@
             "description": "User's comments"
           },
           "owner": {
-            "type": "string",
-            "description": "The id of the user who owns the notice",
-            "example": "64bd86de7f96cefd06432c5d"
+            "type": "object",
+            "properties": {
+              "_id": {
+                "type": "string",
+                "description": "User id",
+                "example": "nfuwjhretyhbvcbuiwrhty"
+              },
+              "name": {
+                "type": "string",
+                "description": "User name",
+                "example": "Mango"
+              },
+              "email": {
+                "type": "string",
+                "description": "User email",
+                "example": "mango@mail.com"
+              },
+              "phone": {
+                "type": "string",
+                "description": "User's phone",
+                "example": "+380671234567",
+                "default": ""
+              }
+            }
           },
           "createdAt": {
             "type": "Date",
@@ -1042,91 +1140,6 @@
             "type": "string",
             "description": "The id of the user who owns the notice",
             "example": "64bd86de7f96cefd06432c5d"
-          },
-          "createdAt": {
-            "type": "Date",
-            "description": "Notice creation date",
-            "example": "2023-07-23T20:00:30.149+00:00"
-          }
-        }
-      },
-      "NoticeOwner": {
-        "type": "object",
-        "properties": {
-          "title": {
-            "type": "string",
-            "description": "The title of the notice",
-            "example": "Lost Cat in Central Park"
-          },
-          "category": {
-            "type": "string",
-            "description": "The category of the notice",
-            "example": "lost-found"
-          },
-          "name": {
-            "type": "string",
-            "description": "User's pet name",
-            "example": "Caty"
-          },
-          "date": {
-            "type": "string",
-            "description": "User's pet birthday",
-            "example": "29-08-2020"
-          },
-          "type": {
-            "type": "string",
-            "description": "User's pet type",
-            "example": "Cat"
-          },
-          "file": {
-            "type": "string",
-            "description": "User's pet photo",
-            "example": "https://example.com/pet.jpg"
-          },
-          "sex": {
-            "type": "string",
-            "description": "The pet's sex",
-            "example": "male"
-          },
-          "location": {
-            "type": "string",
-            "description": "The pet's location",
-            "example": "Kyiv"
-          },
-          "price": {
-            "type": "number",
-            "description": "Pet's price. Required if category is sell",
-            "example": 100
-          },
-          "comments": {
-            "type": "string",
-            "description": "User's comments"
-          },
-          "owner": {
-            "type": "object",
-            "properties": {
-              "_id": {
-                "type": "string",
-                "description": "User id",
-                "example": "nfuwjhretyhbvcbuiwrhty"
-              },
-              "name": {
-                "type": "string",
-                "description": "User name",
-                "example": "Mango"
-              },
-              "email": {
-                "type": "string",
-                "description": "User email",
-                "example": "mango@mail.com"
-              },
-              "phone": {
-                "type": "string",
-                "description": "User's phone",
-                "example": "+380671234567",
-                "default": ""
-              }
-            }
           },
           "createdAt": {
             "type": "Date",
