@@ -8,15 +8,18 @@ const storage = new CloudinaryStorage({
     const { fieldname, originalname } = file;
 
     const userId = req.user._id;
+    const timestamp = Date.now();
 
     let folder;
     let transformation = [
       // { width: 336, crop: "scale" },
       { quality: "auto:best" },
     ];
+    let uniqueFileName = `${timestamp}_${originalname}`;
 
     if (fieldname === "avatar") {
       folder = "avatars";
+      uniqueFileName = `${userId}_${originalname}`;
       transformation = [
         { width: 182, height: 182, crop: "thumb" },
         { quality: "auto:best" },
@@ -28,8 +31,6 @@ const storage = new CloudinaryStorage({
     } else {
       folder = "misc";
     }
-
-    const uniqueFileName = `${userId}_${originalname}`;
 
     return {
       folder: folder,
