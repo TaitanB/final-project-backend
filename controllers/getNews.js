@@ -1,12 +1,17 @@
 const Article = require("../models/article");
 const { ctrlWrapper } = require("../decorators");
-const { getQueryParameters } = require("../helpers");
 
 const getNews = async (req, res) => {
-  const { page = 1, limit = 6 } = req.query;
+  const { page = 1, limit = 6, query } = req.query;
   const skip = (page - 1) * limit;
+  const queryParameters = {};
 
-  const queryParameters = getQueryParameters(req.query);
+  if (query) {
+    queryParameters.$or = [
+      { title: { $regex: query, $options: "i" } },
+      { text: { $regex: query, $options: "i" } },
+    ];
+  }
 
   const total = await Article.countDocuments(queryParameters);
 
