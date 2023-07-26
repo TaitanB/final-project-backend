@@ -18,7 +18,10 @@ const deletePet = async (req, res) => {
     throw HttpError(404);
   }
 
-  res.json({ message: "Pet deleted" });
+  res.json({
+    message: "Pet deleted",
+    deletedNoticeId: petId,
+  });
 };
 
 module.exports = {

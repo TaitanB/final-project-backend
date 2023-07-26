@@ -16,6 +16,7 @@ const deleteById = async (req, res) => {
 
   res.json({
     message: "Notice deleted",
+    deletedNoticeId: noticeId,
   });
 };
 

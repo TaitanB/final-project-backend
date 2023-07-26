@@ -14,7 +14,10 @@ const deleteFavorite = async (req, res) => {
     throw HttpError(404);
   }
 
-  res.json({ message: "Notice deleted from favorites" });
+  res.json({
+    message: "Notice deleted from favorites",
+    deletedNoticeId: noticeId,
+  });
 };
 
 module.exports = {
