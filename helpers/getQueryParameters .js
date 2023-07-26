@@ -11,7 +11,12 @@ const getQueryParameters = (options = {}, owner) => {
   }
 
   if (query) {
-    queryParameters.title = { $regex: query, $options: "i" };
+    queryParameters.$or = [
+      { title: { $regex: query, $options: "i" } },
+      { comments: { $regex: query, $options: "i" } },
+      { location: { $regex: query, $options: "i" } },
+      { type: { $regex: query, $options: "i" } },
+    ];
   }
 
   return queryParameters;
