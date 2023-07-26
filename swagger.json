@@ -150,7 +150,7 @@
           "description": "Request to update user data",
           "required": true,
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateUserRequest"
               }
@@ -175,49 +175,6 @@
           },
           "401": {
             "description": "Not authorized"
-          },
-          "500": {
-            "description": "Internal server error"
-          }
-        }
-      }
-    },
-    "/api/users/avatar": {
-      "patch": {
-        "tags": ["Users"],
-        "summary": "Changing the user's avatar",
-        "security": [{ "Bearer": [] }],
-        "produces": ["application/json"],
-        "requestBody": {
-          "description": "Request user's avatar change",
-          "required": true,
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "_id": {
-                    "type": "string"
-                  },
-                  "avatar": {
-                    "type": "string",
-                    "format": "binary"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "User avatar updated",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UpdateUserAvatarResponse"
-                }
-              }
-            }
           },
           "500": {
             "description": "Internal server error"
@@ -836,6 +793,11 @@
             "maxLength": 16,
             "example": "Mango"
           },
+          "avatarURL": {
+            "type": "string",
+            "description": "User photo",
+            "format": "binary"
+          },
           "birthday": {
             "type": "string",
             "description": "User's birthday. Please use DD-MM-YYYY",
@@ -872,6 +834,10 @@
             "description": "User name",
             "example": "Mango"
           },
+          "avatarURL": {
+            "type": "string",
+            "description": "User photo"
+          },
           "birthday": {
             "type": "string",
             "description": "User's birthday",
@@ -889,31 +855,6 @@
             "description": "User's city",
             "example": "Lviv",
             "default": ""
-          }
-        }
-      },
-      "UpdateUserAvatarRequest": {
-        "type": "object",
-        "required": ["avatarURL"],
-        "properties": {
-          "_id": {
-            "type": "string",
-            "description": "User id",
-            "example": "64497f45555522a6cae4e577"
-          },
-          "avatarURL": {
-            "type": "string",
-            "description": "User photo",
-            "format": "binary"
-          }
-        }
-      },
-      "UpdateUserAvatarResponse": {
-        "type": "object",
-        "properties": {
-          "avatarURL": {
-            "type": "string",
-            "description": "User photo"
           }
         }
       },

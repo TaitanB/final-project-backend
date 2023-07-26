@@ -6,9 +6,8 @@ const {
   logout,
   current,
   updateUserData,
-  updateUserAvatar,
 } = require("../../controllers/auth");
-const { uploadImage } = require("../../middlewares");
+const { uploadImage, parseBody } = require("../../middlewares");
 const {
   userRegisterSchema,
   userLoginSchema,
@@ -28,13 +27,13 @@ router.post("/logout", unauthorized, logout);
 
 router.get("/current", unauthorized, current);
 
-router.put("/", unauthorized, validateBody(userUpdateSchema), updateUserData);
-
-router.patch(
-  "/avatars",
+router.put(
+  "/",
   unauthorized,
   uploadImage.single("avatar"),
-  updateUserAvatar
+  parseBody,
+  validateBody(userUpdateSchema),
+  updateUserData
 );
 
 module.exports = router;
