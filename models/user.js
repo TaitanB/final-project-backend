@@ -74,7 +74,6 @@ const userSchema = new Schema(
           },
           file: {
             type: String,
-            required: [true, "File is required"],
           },
           comments: {
             type: String,

@@ -5,7 +5,8 @@ const ctrlWrapper = require("../../decorators/ctrlWrapper");
 const updateUserData = async (req, res) => {
   const { name, birthday, phone, city } = req.body;
   const { _id } = req.user;
-  const avatarURL = req.file.path;
+
+  const avatarURL = req.file ? req.file.path : undefined;
 
   const user = await User.findByIdAndUpdate(
     _id,

@@ -13,7 +13,7 @@ const getById = async (req, res) => {
   if (!result) {
     throw HttpError(404, "Not found");
   }
-  console.log(result);
+
   res.json(result);
 };
 

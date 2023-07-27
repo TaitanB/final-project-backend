@@ -38,7 +38,6 @@ const noticeSchema = new Schema(
     },
     file: {
       type: String,
-      required: [true, "File is required"],
     },
     sex: {
       type: String,

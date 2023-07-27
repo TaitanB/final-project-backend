@@ -65,10 +65,9 @@ const noticeSchema = Joi.object({
     "string.min": "The type must be not less 2 symbols.",
     "string.max": "The type must be no more 16 symbols.",
   }),
-  file: Joi.string().uri().required().messages({
+  file: Joi.string().uri().messages({
     "string.base": "The file must be a string.",
     "string.uri": "The file must be a valid URL.",
-    "any.required": "The file field is required.",
   }),
   sex: Joi.string().valid("male", "female").required().messages({
     "any.required": "The sex field is required.",
