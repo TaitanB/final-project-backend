@@ -40,7 +40,7 @@
         "summary": "New user registration",
         "produces": ["application/json"],
         "requestBody": {
-          "description": "The request body",
+          "description": "The request body user registration",
           "required": true,
           "content": {
             "application/json": {
@@ -85,7 +85,7 @@
         "summary": "User log in",
         "produces": ["application/json"],
         "requestBody": {
-          "description": "The request body",
+          "description": "The request body user log in",
           "required": true,
           "content": {
             "application/json": {
@@ -140,7 +140,7 @@
         }
       }
     },
-    "/users/": {
+    "/users": {
       "put": {
         "tags": ["Users"],
         "summary": "Update user data",
@@ -159,7 +159,7 @@
         },
         "responses": {
           "200": {
-            "description": "Data updated successfully",
+            "description": "User data updated successfully",
             "content": {
               "application/json": {
                 "schema": {
@@ -224,11 +224,11 @@
                   "properties": {
                     "page": {
                       "type": "string",
-                      "description": "452"
+                      "description": "1"
                     },
                     "perPage": {
                       "type": "string",
-                      "description": "452"
+                      "description": "12"
                     },
                     "totalPages": {
                       "type": "string",
@@ -257,7 +257,7 @@
     "/notices/owner": {
       "get": {
         "tags": ["Notices"],
-        "summary": "Get notices",
+        "summary": "Get notices for owner",
         "security": [{ "Bearer": [] }],
         "produces": ["application/json"],
         "responses": {
@@ -270,15 +270,15 @@
                   "properties": {
                     "page": {
                       "type": "string",
-                      "description": "452"
+                      "description": "1"
                     },
                     "perPage": {
                       "type": "string",
-                      "description": "452"
+                      "description": "12"
                     },
                     "totalPages": {
                       "type": "string",
-                      "description": "452"
+                      "description": "52"
                     },
                     "notices": {
                       "type": "array",
@@ -351,7 +351,7 @@
           {
             "in": "path",
             "name": "id",
-            "description": "Notice's id to delete",
+            "description": "Notice's id",
             "required": true,
             "type": "string"
           }
@@ -378,12 +378,11 @@
       "get": {
         "tags": ["Notices"],
         "summary": "Get a notices by id",
-        "security": [{ "Bearer": [] }],
         "parameters": [
           {
             "in": "path",
             "name": "id",
-            "description": "Get a notices by id",
+            "description": "Notice's id",
             "required": true,
             "type": "string"
           }
@@ -479,7 +478,7 @@
     "/notices/favorite": {
       "get": {
         "tags": ["Notices"],
-        "summary": "Get notices",
+        "summary": "Get favorites notices",
         "security": [{ "Bearer": [] }],
         "produces": ["application/json"],
         "responses": {
@@ -492,15 +491,15 @@
                   "properties": {
                     "page": {
                       "type": "string",
-                      "description": "452"
+                      "description": "1"
                     },
                     "perPage": {
                       "type": "string",
-                      "description": "452"
+                      "description": "12"
                     },
                     "totalPages": {
                       "type": "string",
-                      "description": "452"
+                      "description": "18"
                     },
                     "notices": {
                       "type": "array",
@@ -647,15 +646,15 @@
                   "properties": {
                     "page": {
                       "type": "string",
-                      "description": "452"
+                      "description": "1"
                     },
                     "perPage": {
                       "type": "string",
-                      "description": "452"
+                      "description": "6"
                     },
                     "totalPages": {
                       "type": "string",
-                      "description": "452"
+                      "description": "192"
                     },
                     "articles": {
                       "type": "array",
@@ -825,7 +824,7 @@
             "maxLength": 16,
             "example": "Mango"
           },
-          "avatarURL": {
+          "avatar": {
             "type": "string",
             "description": "User photo",
             "format": "binary"
@@ -901,8 +900,7 @@
           "type",
           "file",
           "sex",
-          "location",
-          "owner"
+          "location"
         ],
         "properties": {
           "title": {
@@ -968,11 +966,6 @@
             "type": "string",
             "description": "The id of the user who owns the notice",
             "example": "64bd86de7f96cefd06432c5d"
-          },
-          "createdAt": {
-            "type": "Date",
-            "description": "Notice creation date",
-            "example": "2023-07-23T20:00:30.149+00:00"
           }
         }
       },
@@ -1018,6 +1011,11 @@
             "type": "string",
             "description": "The id of the user who owns the notice",
             "example": "64bd86de7f96cefd06432c5d"
+          },
+          "createdAt": {
+            "type": "Date",
+            "description": "Notice creation date",
+            "example": "2023-07-23T20:00:30.149+00:00"
           }
         }
       },
@@ -1127,7 +1125,7 @@
 
       "PetRequest": {
         "type": "object",
-        "required": ["name", "date", "type", "file", "sex", "owner"],
+        "required": ["name", "date", "type", "file", "sex"],
         "properties": {
           "name": {
             "type": "string",
@@ -1163,16 +1161,6 @@
             "type": "string",
             "description": "User's comments",
             "maxLength": 120
-          },
-          "owner": {
-            "type": "string",
-            "description": "The id of the user who owns the notice",
-            "example": "64bd86de7f96cefd06432c5d"
-          },
-          "createdAt": {
-            "type": "Date",
-            "description": "Notice creation date",
-            "example": "2023-07-23T20:00:30.149+00:00"
           }
         }
       },
