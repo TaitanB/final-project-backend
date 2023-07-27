@@ -15,13 +15,15 @@ const getFavorite = async (req, res) => {
     _id: { $in: favorite },
   });
 
+  const totalPages = Math.ceil(total / perPage);
+
   const favoriteNotices = await Notice.find(
     { ...queryParameters, _id: { $in: favorite } },
     "-name -type -comments -createdAt -updatedAt",
     { skip, limit }
   );
 
-  res.status(200).json({ total, notices: favoriteNotices });
+  res.status(200).json({ page, perPage, totalPages, notices: favoriteNotices });
 };
 
 module.exports = {

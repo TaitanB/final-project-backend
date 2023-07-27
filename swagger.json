@@ -222,7 +222,15 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "total": {
+                    "page": {
+                      "type": "string",
+                      "description": "452"
+                    },
+                    "perPage": {
+                      "type": "string",
+                      "description": "452"
+                    },
+                    "totalPages": {
                       "type": "string",
                       "description": "452"
                     },
@@ -260,7 +268,15 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "total": {
+                    "page": {
+                      "type": "string",
+                      "description": "452"
+                    },
+                    "perPage": {
+                      "type": "string",
+                      "description": "452"
+                    },
+                    "totalPages": {
                       "type": "string",
                       "description": "452"
                     },
@@ -474,7 +490,15 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "total": {
+                    "page": {
+                      "type": "string",
+                      "description": "452"
+                    },
+                    "perPage": {
+                      "type": "string",
+                      "description": "452"
+                    },
+                    "totalPages": {
                       "type": "string",
                       "description": "452"
                     },
@@ -621,7 +645,15 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "total": {
+                    "page": {
+                      "type": "string",
+                      "description": "452"
+                    },
+                    "perPage": {
+                      "type": "string",
+                      "description": "452"
+                    },
+                    "totalPages": {
                       "type": "string",
                       "description": "452"
                     },

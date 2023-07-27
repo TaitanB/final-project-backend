@@ -12,13 +12,15 @@ const getAllOwner = async (req, res) => {
 
   const total = await Notice.countDocuments(queryParameters);
 
+  const totalPages = Math.ceil(total / perPage);
+
   const result = await Notice.find(
     queryParameters,
     "-name -type -comments -createdAt -updatedAt",
     { skip, limit }
   );
 
-  res.status(200).json({ total, notices: result });
+  res.status(200).json({ page, perPage, totalPages, notices: result });
 };
 
 module.exports = {

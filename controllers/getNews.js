@@ -15,9 +15,11 @@ const getNews = async (req, res) => {
 
   const total = await Article.countDocuments(queryParameters);
 
+  const totalPages = Math.ceil(total / limit);
+
   const result = await Article.find(queryParameters, "-_id", { skip, limit });
 
-  res.status(200).json({ total, articles: result });
+  res.status(200).json({ page, perPage: limit, totalPages, articles: result });
 };
 
 module.exports = {
