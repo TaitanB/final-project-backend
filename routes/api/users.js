@@ -4,7 +4,7 @@ const {
   register,
   login,
   logout,
-  current,
+  currentUser,
   updateUserData,
 } = require("../../controllers/auth");
 const { uploadImage, parseBody } = require("../../middlewares");
@@ -25,7 +25,7 @@ router.post("/login", validateBody(userLoginSchema), login);
 
 router.post("/logout", unauthorized, logout);
 
-router.get("/current", unauthorized, current);
+router.get("/current", unauthorized, currentUser);
 
 router.put(
   "/",

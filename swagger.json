@@ -8,7 +8,7 @@
   "consumes": ["application/json", "mulripart/form-data"],
   "produces": ["application/json"],
   "servers": [
-    { "url": "https://final-project-backend-4o0r.onrender.com" },
+    { "url": "https://final-project-backend-4o0r.onrender.com/api" },
     { "url": "https://localhost:3001" }
   ],
   "tags": [
@@ -34,7 +34,7 @@
     }
   ],
   "paths": {
-    "/api/users/register": {
+    "/users/register": {
       "post": {
         "tags": ["Users"],
         "summary": "New user registration",
@@ -79,7 +79,7 @@
         }
       }
     },
-    "/api/users/login": {
+    "/users/login": {
       "post": {
         "tags": ["Users"],
         "summary": "User log in",
@@ -124,7 +124,7 @@
         }
       }
     },
-    "/api/users/logout": {
+    "/users/logout": {
       "post": {
         "tags": ["Users"],
         "summary": "User logout",
@@ -140,7 +140,7 @@
         }
       }
     },
-    "/api/users/": {
+    "/users/": {
       "put": {
         "tags": ["Users"],
         "summary": "Update user data",
@@ -182,7 +182,7 @@
         }
       }
     },
-    "/api/users/current": {
+    "/users/current": {
       "get": {
         "tags": ["Users"],
         "summary": "Get data current user",
@@ -209,7 +209,7 @@
       }
     },
 
-    "/api/notices": {
+    "/notices": {
       "get": {
         "tags": ["Notices"],
         "summary": "Get notices",
@@ -246,7 +246,7 @@
         }
       }
     },
-    "/api/notices/owner": {
+    "/notices/owner": {
       "get": {
         "tags": ["Notices"],
         "summary": "Get notices",
@@ -326,7 +326,7 @@
         }
       }
     },
-    "/api/notices/{id}": {
+    "/notices/{id}": {
       "delete": {
         "tags": ["Notices"],
         "summary": "Delete a notices by id",
@@ -392,7 +392,7 @@
         }
       }
     },
-    "/api/notices/favorite/add/{id}": {
+    "/notices/favorite/add/{id}": {
       "patch": {
         "tags": ["Notices"],
         "summary": "Add notice to favorite",
@@ -426,7 +426,7 @@
         }
       }
     },
-    "/api/notices/favorite/delete/{id}": {
+    "/notices/favorite/delete/{id}": {
       "patch": {
         "tags": ["Notices"],
         "summary": "Delete notice to favorite",
@@ -460,7 +460,7 @@
         }
       }
     },
-    "/api/notices/favorite": {
+    "/notices/favorite": {
       "get": {
         "tags": ["Notices"],
         "summary": "Get notices",
@@ -499,7 +499,7 @@
       }
     },
 
-    "/api/users/pets": {
+    "/users/pets": {
       "patch": {
         "tags": ["Pets"],
         "summary": "Add new pet",
@@ -543,7 +543,7 @@
         }
       }
     },
-    "/api/users/pets/{id}": {
+    "/users/pets/{id}": {
       "patch": {
         "tags": ["Pets"],
         "summary": "Delete a pet by id",
@@ -578,7 +578,7 @@
       }
     },
 
-    "/api/sponsors": {
+    "/sponsors": {
       "get": {
         "tags": ["Friends"],
         "summary": "Get friends",
@@ -608,7 +608,7 @@
         }
       }
     },
-    "/api/news": {
+    "/news": {
       "get": {
         "tags": ["News"],
         "summary": "Get news",
