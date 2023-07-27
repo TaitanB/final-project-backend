@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+const { Schema, model } = require("mongoose");
 
-const articleSchema = new mongoose.Schema({
+const articleSchema = new Schema({
   imgUrl: {
     type: String,
   },
@@ -24,6 +24,6 @@ const articleSchema = new mongoose.Schema({
 
 articleSchema.index({ title: "text" }, { text: "text" });
 
-const Article = mongoose.model("article", articleSchema);
+const Article = model("article", articleSchema);
 
 module.exports = Article;

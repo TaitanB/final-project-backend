@@ -4,15 +4,11 @@ const User = require("../../models/user");
 
 const deletePet = async (req, res) => {
   const { id: petId } = req.params;
-  const { _id: owner, pets } = req.user;
+  const { _id: owner } = req.user;
 
-  const newPets = pets.filter((pet) => pet._id.toString() !== petId);
-
-  const result = await User.findByIdAndUpdate(owner, { pets: newPets });
-
-  // const result = await User.findByIdAndUpdate(owner, {
-  //   $pull: { pets: petId },
-  // });
+  const result = await User.findByIdAndUpdate(owner, {
+    $pull: { pets: { _id: petId } },
+  });
 
   if (!result) {
     throw HttpError(404);

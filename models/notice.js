@@ -1,7 +1,11 @@
 const { Schema, model } = require("mongoose");
 
 const { handleMongooseError } = require("../helpers");
-const { nameRegex, cityRegex } = require("../constants/constants");
+const {
+  nameRegex,
+  cityRegex,
+  birthdayRegex,
+} = require("../constants/constants");
 
 const noticeSchema = new Schema(
   {
@@ -23,7 +27,7 @@ const noticeSchema = new Schema(
     },
     date: {
       type: String,
-      default: "",
+      match: birthdayRegex,
       required: [true, "Date is required"],
     },
     type: {
@@ -34,18 +38,17 @@ const noticeSchema = new Schema(
     },
     file: {
       type: String,
-      default: "",
-      required: true,
+      required: [true, "File is required"],
     },
     sex: {
       type: String,
       enum: ["male", "female"],
-      required: true,
+      required: [true, "Sex is required"],
     },
     location: {
       type: String,
       match: cityRegex,
-      required: true,
+      required: [true, "Location is required"],
     },
     price: {
       type: Number,
@@ -57,6 +60,7 @@ const noticeSchema = new Schema(
     comments: {
       type: String,
       maxlength: 120,
+      default: "",
     },
     owner: {
       type: Schema.Types.ObjectId,

@@ -3,6 +3,7 @@ const { Schema, model } = require("mongoose");
 const { handleMongooseError } = require("../helpers");
 const {
   nameRegex,
+  birthdayRegex,
   emailRegex,
   passwordRegex,
   phoneRegex,
@@ -11,6 +12,9 @@ const {
 
 const userSchema = new Schema(
   {
+    token: {
+      type: String,
+    },
     name: {
       type: String,
       match: nameRegex,
@@ -28,17 +32,15 @@ const userSchema = new Schema(
       match: passwordRegex,
       required: [true, "Set password for user"],
     },
-    token: {
-      type: String,
-    },
     avatarURL: {
       type: String,
+      required: true,
       default:
         "https://res.cloudinary.com/dxr3bntge/image/upload/v1690100899/misc/avatar-default.png.png",
-      required: true,
     },
     birthday: {
       type: String,
+      match: birthdayRegex,
       default: "",
     },
     phone: {
@@ -61,6 +63,7 @@ const userSchema = new Schema(
           },
           date: {
             type: String,
+            match: birthdayRegex,
             required: [true, "Date is required"],
           },
           type: {
@@ -71,24 +74,20 @@ const userSchema = new Schema(
           },
           file: {
             type: String,
-            default: "",
-            required: true,
+            required: [true, "File is required"],
           },
           comments: {
             type: String,
             maxlength: 120,
+            default: "",
           },
         },
       ],
       default: [],
     },
     favorite: {
-      type: Array,
+      type: [String],
       default: [],
-    },
-    newUser: {
-      type: Boolean,
-      default: true,
     },
   },
   { versionKey: false, timestamps: true }
