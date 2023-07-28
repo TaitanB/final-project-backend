@@ -232,6 +232,32 @@
               "minimum": 1
             },
             "description": "Limit of items per page"
+          },
+          {
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search query for notices"
+          },
+          {
+            "in": "query",
+            "name": "category",
+            "schema": {
+              "type": "string",
+              "enum": ["sell", "lost-found", "for-free"]
+            },
+            "description": "Filter notices by category"
+          },
+          {
+            "in": "query",
+            "name": "sex",
+            "schema": {
+              "type": "string",
+              "enum": ["male", "female"]
+            },
+            "description": "Filter notices by sex"
           }
         ],
         "responses": {
@@ -298,6 +324,32 @@
               "minimum": 1
             },
             "description": "Limit of items per page"
+          },
+          {
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search query for notices"
+          },
+          {
+            "in": "query",
+            "name": "category",
+            "schema": {
+              "type": "string",
+              "enum": ["sell", "lost-found", "for-free"]
+            },
+            "description": "Filter notices by category"
+          },
+          {
+            "in": "query",
+            "name": "sex",
+            "schema": {
+              "type": "string",
+              "enum": ["male", "female"]
+            },
+            "description": "Filter notices by sex"
           }
         ],
         "responses": {
@@ -539,6 +591,32 @@
               "minimum": 1
             },
             "description": "Limit of items per page"
+          },
+          {
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search query for notices"
+          },
+          {
+            "in": "query",
+            "name": "category",
+            "schema": {
+              "type": "string",
+              "enum": ["sell", "lost-found", "for-free"]
+            },
+            "description": "Filter notices by category"
+          },
+          {
+            "in": "query",
+            "name": "sex",
+            "schema": {
+              "type": "string",
+              "enum": ["male", "female"]
+            },
+            "description": "Filter notices by sex"
           }
         ],
         "responses": {
@@ -714,6 +792,14 @@
               "minimum": 1
             },
             "description": "Limit of items per page"
+          },
+          {
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search query for notices"
           }
         ],
         "responses": {
