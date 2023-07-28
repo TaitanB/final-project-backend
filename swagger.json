@@ -5,7 +5,7 @@
     "title": "Your Pet",
     "description": "API for Your Pet application"
   },
-  "consumes": ["application/json", "mulripart/form-data","multipart/mixed"],
+  "consumes": ["application/json", "mulripart/form-data"],
   "produces": ["application/json"],
   "servers": [
     { "url": "https://final-project-backend-4o0r.onrender.com/api" },
@@ -150,7 +150,7 @@
           "description": "Request to update user data",
           "required": true,
           "content": {
-            "multipart/mixed": {
+            "mulripart/form-data": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateUserRequest"
               }
@@ -308,7 +308,7 @@
           "description": "Notice data",
           "required": true,
           "content": {
-            "multipart/mixed": {
+            "mulripart/form-data": {
               "schema": {
                 "$ref": "#/components/schemas/NoticeRequest"
               }
@@ -532,7 +532,7 @@
           "description": "Pet data",
           "required": true,
           "content": {
-            "multipart/mixed": {
+            "mulripart/form-data": {
               "schema": {
                 "$ref": "#/components/schemas/PetRequest"
               }
@@ -961,11 +961,6 @@
             "type": "string",
             "description": "User's comments",
             "maxLength": 120
-          },
-          "owner": {
-            "type": "string",
-            "description": "The id of the user who owns the notice",
-            "example": "64bd86de7f96cefd06432c5d"
           }
         }
       },
