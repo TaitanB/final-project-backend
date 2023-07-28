@@ -321,7 +321,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Notice"
+                  "$ref": "#/components/schemas/NoticeResponse"
                 }
               }
             }
