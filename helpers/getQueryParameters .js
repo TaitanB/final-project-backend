@@ -1,5 +1,5 @@
 const getQueryParameters = (options = {}, owner) => {
-  const { category, query } = options;
+  const { category, query, sex } = options;
   const queryParameters = {};
 
   if (owner) {
@@ -17,6 +17,10 @@ const getQueryParameters = (options = {}, owner) => {
       { location: { $regex: query, $options: "i" } },
       { type: { $regex: query, $options: "i" } },
     ];
+  }
+
+  if (sex) {
+    queryParameters.sex = sex;
   }
 
   return queryParameters;
