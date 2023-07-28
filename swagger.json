@@ -5,7 +5,7 @@
     "title": "Your Pet",
     "description": "API for Your Pet application"
   },
-  "consumes": ["application/json", "mulripart/form-data"],
+  "consumes": ["application/json", "mulripart/form-data","multipart/mixed"],
   "produces": ["application/json"],
   "servers": [
     { "url": "https://final-project-backend-4o0r.onrender.com/api" },
@@ -150,7 +150,7 @@
           "description": "Request to update user data",
           "required": true,
           "content": {
-            "multipart/form-data": {
+            "multipart/mixed": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateUserRequest"
               }
@@ -308,7 +308,7 @@
           "description": "Notice data",
           "required": true,
           "content": {
-            "multipart/form-data": {
+            "multipart/mixed": {
               "schema": {
                 "$ref": "#/components/schemas/NoticeRequest"
               }
@@ -532,7 +532,7 @@
           "description": "Pet data",
           "required": true,
           "content": {
-            "multipart/form-data": {
+            "multipart/mixed": {
               "schema": {
                 "$ref": "#/components/schemas/PetRequest"
               }
@@ -898,7 +898,7 @@
           "name",
           "date",
           "type",
-          "file",
+          "notice",
           "sex",
           "location"
         ],
@@ -934,7 +934,7 @@
             "maxLength": 16,
             "example": "Cat"
           },
-          "file": {
+          "notice": {
             "type": "string",
             "format": "binary",
             "description": "User's pet photo",
@@ -1125,7 +1125,7 @@
 
       "PetRequest": {
         "type": "object",
-        "required": ["name", "date", "type", "file", "sex"],
+        "required": ["name", "date", "type", "pet", "sex"],
         "properties": {
           "name": {
             "type": "string",
@@ -1145,7 +1145,7 @@
             "maxLength": 16,
             "example": "Cat"
           },
-          "file": {
+          "pet": {
             "type": "string",
             "format": "binary",
             "description": "User's pet photo",
