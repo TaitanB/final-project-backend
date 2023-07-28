@@ -9,7 +9,7 @@
   "produces": ["application/json"],
   "servers": [
     { "url": "https://final-project-backend-4o0r.onrender.com/api" },
-    { "url": "http:/localhost:3001" }
+    { "url": "http://localhost:3001/api" }
   ],
   "tags": [
     {
