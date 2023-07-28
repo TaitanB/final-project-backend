@@ -8,7 +8,7 @@
   "consumes": ["application/json", "multipart/form-data"],
   "produces": ["application/json"],
   "servers": [
-    { "url": "https:/final-project-backend-4o0r.onrender.com/api" },
+    { "url": "https://final-project-backend-4o0r.onrender.com/api" },
     { "url": "http:/localhost:3001" }
   ],
   "tags": [
