@@ -937,8 +937,7 @@
           "notice": {
             "type": "string",
             "format": "binary",
-            "description": "User's pet photo",
-            "example": "https://example.com/pet.jpg"
+            "description": "User's pet photo"
           },
           "sex": {
             "type": "string",
@@ -1143,8 +1142,7 @@
           "pet": {
             "type": "string",
             "format": "binary",
-            "description": "User's pet photo",
-            "example": "https://example.com/pet.jpg"
+            "description": "User's pet photo"
           },
           "comments": {
             "type": "string",
