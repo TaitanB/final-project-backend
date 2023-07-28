@@ -214,6 +214,26 @@
         "tags": ["Notices"],
         "summary": "Get notices",
         "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "description": "Page number for pagination"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "description": "Limit of items per page"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successful operation",
@@ -260,6 +280,26 @@
         "summary": "Get notices for owner",
         "security": [{ "Bearer": [] }],
         "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "description": "Page number for pagination"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "description": "Limit of items per page"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successful operation",
@@ -481,6 +521,26 @@
         "summary": "Get favorites notices",
         "security": [{ "Bearer": [] }],
         "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "description": "Page number for pagination"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "description": "Limit of items per page"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successful operation",
@@ -636,6 +696,26 @@
         "tags": ["News"],
         "summary": "Get news",
         "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "description": "Page number for pagination"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "description": "Limit of items per page"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successful operation",
