@@ -212,7 +212,7 @@
     "/notices": {
       "get": {
         "tags": ["Notices"],
-        "summary": "Get notices",
+        "summary": "Get all notices",
         "produces": ["application/json"],
         "parameters": [
           {
@@ -257,7 +257,16 @@
               "type": "string",
               "enum": ["male", "female"]
             },
-            "description": "Filter notices by sex"
+            "description": "Filter notices by pet's sex"
+          },
+          {
+            "in": "query",
+            "name": "age",
+            "schema": {
+              "type": "string",
+              "enum": ["3-12", "12-24", ">24"]
+            },
+            "description": "Filter notices by pet's age"
           }
         ],
         "responses": {
@@ -349,7 +358,16 @@
               "type": "string",
               "enum": ["male", "female"]
             },
-            "description": "Filter notices by sex"
+            "description": "Filter notices by pet's sex"
+          },
+          {
+            "in": "query",
+            "name": "age",
+            "schema": {
+              "type": "string",
+              "enum": ["3-12", "12-24", ">24"]
+            },
+            "description": "Filter notices by pet's age"
           }
         ],
         "responses": {
@@ -616,7 +634,16 @@
               "type": "string",
               "enum": ["male", "female"]
             },
-            "description": "Filter notices by sex"
+            "description": "Filter notices by pet's sex"
+          },
+          {
+            "in": "query",
+            "name": "age",
+            "schema": {
+              "type": "string",
+              "enum": ["3-12", "12-24", ">24"]
+            },
+            "description": "Filter notices by pet's age"
           }
         ],
         "responses": {

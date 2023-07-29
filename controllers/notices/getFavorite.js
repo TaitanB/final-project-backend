@@ -1,7 +1,7 @@
 const { ctrlWrapper } = require("../../decorators");
 const Notice = require("../../models/notice");
 const { perPage } = require("../../constants/constants");
-const { getQueryParameters } = require("../../helpers");
+const { getQueryParameters, formatDate } = require("../../helpers");
 
 const getFavorite = async (req, res) => {
   const { favorite } = req.user;
@@ -23,7 +23,12 @@ const getFavorite = async (req, res) => {
     { skip, limit }
   );
 
-  res.status(200).json({ page, perPage, totalPages, notices: favoriteNotices });
+  const formattedResult = favoriteNotices.map((notice) => ({
+    ...notice._doc,
+    date: formatDate(notice.date),
+  }));
+
+  res.status(200).json({ page, perPage, totalPages, notices: formattedResult });
 };
 
 module.exports = {

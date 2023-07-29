@@ -26,7 +26,7 @@ const noticeSchema = new Schema(
       required: [true, "Name is required"],
     },
     date: {
-      type: String,
+      type: Date,
       match: birthdayRegex,
       required: [true, "Date is required"],
     },

@@ -1,7 +1,7 @@
 const Notice = require("../../models/notice");
 const { ctrlWrapper } = require("../../decorators");
 const { perPage } = require("../../constants/constants");
-const { getQueryParameters } = require("../../helpers");
+const { getQueryParameters, formatDate } = require("../../helpers");
 
 const getAll = async (req, res) => {
   const { page = 1, limit = perPage } = req.query;
@@ -19,7 +19,12 @@ const getAll = async (req, res) => {
     { skip, limit }
   );
 
-  res.status(200).json({ page, perPage, totalPages, notices: result });
+  const formattedResult = result.map((notice) => ({
+    ...notice._doc,
+    date: formatDate(notice.date),
+  }));
+
+  res.status(200).json({ page, perPage, totalPages, notices: formattedResult });
 };
 
 module.exports = {

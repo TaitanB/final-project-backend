@@ -1,5 +1,5 @@
 const Notice = require("../../models/notice");
-const { HttpError } = require("../../helpers");
+const { HttpError, formatDate } = require("../../helpers");
 const { ctrlWrapper } = require("../../decorators");
 
 const getById = async (req, res) => {
@@ -10,11 +10,16 @@ const getById = async (req, res) => {
     "name email phone"
   );
 
-  if (!result) {
+  const formattedResult = {
+    ...result._doc,
+    date: formatDate(result.date),
+  };
+
+  if (!formattedResult) {
     throw HttpError(404, "Not found");
   }
 
-  res.json(result);
+  res.json(formattedResult);
 };
 
 module.exports = {
