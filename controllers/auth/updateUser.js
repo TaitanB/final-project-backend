@@ -1,5 +1,4 @@
 const User = require("../../models/user");
-
 const ctrlWrapper = require("../../decorators/ctrlWrapper");
 
 const updateUserData = async (req, res) => {

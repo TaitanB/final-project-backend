@@ -1,6 +1,6 @@
-const { ctrlWrapper } = require("../../decorators");
 const Notice = require("../../models/notice");
 const { perPage } = require("../../constants/constants");
+const { ctrlWrapper } = require("../../decorators");
 const { getQueryParameters, formatDate } = require("../../helpers");
 
 const getFavorite = async (req, res) => {

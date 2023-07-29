@@ -12,7 +12,7 @@ const storage = new CloudinaryStorage({
 
     let folder;
     let transformation = [
-      // { width: 336, crop: "scale" },
+      { width: 480, crop: "scale" },
       { quality: "auto:best" },
     ];
     let uniqueFileName = `${timestamp}_${originalname}`;

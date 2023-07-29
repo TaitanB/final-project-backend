@@ -1,5 +1,5 @@
-const { ctrlWrapper } = require("../../decorators");
 const Notice = require("../../models/notice");
+const { ctrlWrapper } = require("../../decorators");
 
 const formatDate = (date) => {
   const [day, month, year] = date.split("-");

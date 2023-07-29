@@ -1,6 +1,6 @@
 const Notice = require("../../models/notice");
-const { ctrlWrapper } = require("../../decorators");
 const { perPage } = require("../../constants/constants");
+const { ctrlWrapper } = require("../../decorators");
 const { getQueryParameters, formatDate } = require("../../helpers");
 
 const getAllOwner = async (req, res) => {

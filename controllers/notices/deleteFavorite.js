@@ -1,6 +1,6 @@
+const User = require("../../models/user");
 const { ctrlWrapper } = require("../../decorators");
 const { HttpError } = require("../../helpers/HttpError");
-const User = require("../../models/user");
 
 const deleteFavorite = async (req, res) => {
   const { id: noticeId } = req.params;
