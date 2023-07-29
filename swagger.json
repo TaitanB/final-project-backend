@@ -1,5 +1,5 @@
 {
-  "openapi": "3.1.0",
+  "openapi": "3.0.1",
   "info": {
     "version": "1.0.0",
     "title": "Your Pet",
@@ -382,7 +382,7 @@
               "type": "array",
               "items": {
                 "type": "string",
-                "enum": ["3-12m", "1-2y", ">2y"]
+                "enum": ["3-12", "12-24", ">24"]
               }
             },
             "description": "Filter notices by pet's age"
