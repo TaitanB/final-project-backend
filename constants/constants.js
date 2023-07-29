@@ -8,9 +8,9 @@ const cityRegex = /^[A-Za-z\s]+(?:,\s*[A-Za-z\s]+)*$/;
 const perPage = 12;
 
 const ageEnum = {
-  FROM_3_TO_12: "3-12",
-  FROM_12_TO_24: "12-24",
-  MORE_THAN_24: ">24",
+  FROM_3_TO_12: "3-12m",
+  FROM_12_TO_24: "1-2y",
+  MORE_THAN_24: ">2y",
 };
 
 module.exports = {

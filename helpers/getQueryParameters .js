@@ -39,16 +39,23 @@ const getQueryParameters = (options = {}, owner) => {
   }
 
   if (age) {
-    const { min, max } = getAgeInMonths(age);
-    const currentDate = new Date();
-    const date = new Date(currentDate);
-    date.setMonth(currentDate.getMonth() - max);
-    currentDate.setMonth(currentDate.getMonth() - min);
+    const ageArray = Array.isArray(age) ? age : [age];
+    const ageConditions = ageArray.map((ageItem) => {
+      const { min, max } = getAgeInMonths(ageItem);
+      const currentDate = new Date();
+      const date = new Date(currentDate);
+      date.setMonth(currentDate.getMonth() - max);
+      currentDate.setMonth(currentDate.getMonth() - min);
 
-    queryParameters.date = {
-      $lte: currentDate,
-      $gte: date,
-    };
+      return {
+        date: {
+          $lte: currentDate,
+          $gte: date,
+        },
+      };
+    });
+
+    queryParameters.$or = ageConditions;
   }
 
   return queryParameters;
