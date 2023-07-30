@@ -5,17 +5,17 @@
 
 <h3>This project was created using:</h3>
 <ul>
-<li>node</li>
-<li>express</li>
-<li>MongoDB</li>
-<li>multer</li>
-<li>mongoose</li>
-<li>morgan</li>
-<li>joi</li>
-<li>cloudinary</li>
-<li>bcryptjs</li>
-<li>jsonwebtoken</li>
-<li>swagger-ui-express</li>
+<li><a href="https://nodejs.org/ru" target="_blank" rel="noreferrer">nodejs</a></li>
+<li><a href="https://www.npmjs.com/package/express" target="_blank" rel="noreferrer">expressjs</a></li>
+<li><a href="http://expressjs.com/en/resources/middleware/multer.html" target="_blank" rel="noreferrer">multer</a></li>
+<li><a href="https://expressjs.com/en/resources/middleware/morgan.html" target="_blank" rel="noreferrer">morgan</a></li>
+<li><a href="https://www.mongodb.com/" target="_blank" rel="noreferrer">MongoDB</a></li>
+<li><a href="https://cloudinary.com/" target="_blank" rel="noreferrer">cloudinary</a></li>
+<li><a href="https://mongoosejs.com/" target="_blank" rel="noreferrer">mongoosejs</a></li>
+<li><a href="https://joi.dev/" target="_blank" rel="noreferrer">joi</a></li>
+<li><a href="https://www.npmjs.com/package/bcryptjs" target="_blank" rel="noreferrer">bcryptjs</li>
+<li><a href="https://www.npmjs.com/package/jsonwebtoken" target="_blank" rel="noreferrer">jsonwebtoken</a></li>
+<li><a href="https://www.npmjs.com/package/swagger-ui-express" target="_blank" rel="noreferrer">swagger-ui-express</a></li>
 </ul>
 
 <h2>Final-project-frontend 👉 

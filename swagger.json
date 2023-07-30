@@ -1,9 +1,13 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "version": "1.0.0",
+    "version": "1.0.1",
     "title": "Your Pet",
     "description": "API for Your Pet application"
+  },
+  "externalDocs": {
+    "description": "Your Pet",
+    "url": "https://khailoandrey.github.io/final-project-frontend/"
   },
   "consumes": ["application/json", "multipart/form-data"],
   "produces": ["application/json"],
@@ -993,7 +997,8 @@
           },
           "avatarURL": {
             "type": "string",
-            "description": "User photo"
+            "description": "User photo url",
+            "example": "https://example.com/avatar.jpg"
           },
           "pets": {
             "type": "array",
@@ -1017,7 +1022,8 @@
                 },
                 "file": {
                   "type": "string",
-                  "description": "User's pet photo"
+                  "description": "User's pet photo url",
+                  "example": "https://example.com/pet.jpg"
                 },
                 "comments": {
                   "type": "string",
@@ -1078,7 +1084,6 @@
           "city": {
             "type": "string",
             "description": "User's city",
-            "pattern": "^[A-Za-zs]+(?:,s*[A-Za-zs]+)*$",
             "example": "Lviv",
             "default": ""
           }
@@ -1099,7 +1104,8 @@
           },
           "avatarURL": {
             "type": "string",
-            "description": "User photo"
+            "description": "User photo url",
+            "example": "https://example.com/avatar.jpg"
           },
           "birthday": {
             "type": "string",
@@ -1151,12 +1157,14 @@
           "name": {
             "type": "string",
             "description": "User's pet name",
-            "pattern": "^[A-Za-z]{2,16}$",
+            "minLength": 2,
+            "maxLength": 16,
             "example": "Caty"
           },
           "date": {
             "type": "string",
-            "description": "User's pet birthday",
+            "description": "User's pet birthday. Please use DD-MM-YYYY.",
+            "pattern": "^\\d{2}-\\d{2}-\\d{4}$",
             "example": "29-08-2020"
           },
           "type": {
@@ -1220,7 +1228,7 @@
           },
           "file": {
             "type": "string",
-            "description": "User's pet photo",
+            "description": "User's pet photo url",
             "example": "https://example.com/pet.jpg"
           },
           "sex": {
@@ -1280,7 +1288,7 @@
           },
           "file": {
             "type": "string",
-            "description": "User's pet photo",
+            "description": "User's pet photo url",
             "example": "https://example.com/pet.jpg"
           },
           "sex": {
@@ -1356,12 +1364,14 @@
           "name": {
             "type": "string",
             "description": "User's pet name",
-            "pattern": "^[A-Za-z]{2,16}$",
+            "minLength": 2,
+            "maxLength": 16,
             "example": "Caty"
           },
           "date": {
             "type": "string",
-            "description": "User's pet birthday",
+            "description": "User's pet birthday. Please use DD-MM-YYYY.",
+            "pattern": "^\\d{2}-\\d{2}-\\d{4}$",
             "example": "29-08-2020"
           },
           "type": {
@@ -1403,7 +1413,7 @@
           },
           "file": {
             "type": "string",
-            "description": "User's pet photo",
+            "description": "User's pet photo url",
             "example": "https://example.com/pet.jpg"
           },
           "comments": {
