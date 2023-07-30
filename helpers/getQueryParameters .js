@@ -39,7 +39,7 @@ const getQueryParameters = (options = {}, owner) => {
   }
 
   if (age) {
-    const ageArray = Array.isArray(age) ? age : [age];
+    const ageArray = Array.isArray(age) ? age : age.split(",");
     const ageConditions = ageArray.map((ageItem) => {
       const { min, max } = getAgeInMonths(ageItem);
       const currentDate = new Date();
