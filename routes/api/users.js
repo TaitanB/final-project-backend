@@ -6,8 +6,9 @@ const {
   logout,
   currentUser,
   updateUserData,
+  googleAuth,
 } = require("../../controllers/auth");
-const { uploadImage, parseBody } = require("../../middlewares");
+const { uploadImage, parseBody, passport } = require("../../middlewares");
 const {
   userRegisterSchema,
   userLoginSchema,
@@ -18,6 +19,17 @@ const { validateBody } = require("../../decorators");
 const { unauthorized } = require("../../middlewares");
 
 const router = express.Router();
+
+router.get(
+  "/google",
+  passport.authenticate("google", { scope: ["email", "profile"] })
+);
+
+router.get(
+  "/google/callback",
+  passport.authenticate("google", { session: false }),
+  googleAuth
+);
 
 router.post("/register", validateBody(userRegisterSchema), register);
 
