@@ -1,5 +1,5 @@
-const nameRegex = /^([A-Za-zА-Яа-яЁёІіЇїЄєҐґ]+\s?){2,26}$/;
-
+const userNameRegex = /^([A-Za-zА-Яа-яЁёІіЇїЄєҐґ]+\s?){2,26}$/;
+const nameRegex = /^[A-Za-zА-Яа-яЁёІіЇїЄєҐґ]{2,16}$/;
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-z.-]+\.[a-z]{2,}$/;
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/;
 const phoneRegex = /^\+380\d{9}$/;
@@ -23,5 +23,5 @@ module.exports = {
   birthdayRegex,
   cityRegex,
   perPage,
-  ageEnum,
+  ageEnum,userNameRegex
 };

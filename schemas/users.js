@@ -9,10 +9,10 @@ const {
 
 const userRegisterSchema = Joi.object({
   name: Joi.string().min(2).max(26).required().messages({
-    "string.base": "The name must be a string of 2 to 16 symbols.",
+    "string.base": "The name must be a string of 2 to 26 symbols.",
     "any.required": "The name field is required.",
     "string.min": "The name must be not less 2 symbols.",
-    "string.max": "The name must be no more 16 symbols.",
+    "string.max": "The name must be no more 26 symbols.",
   }),
   email: Joi.string().email().required().messages({
     "string.base": "The email must be a string.",
@@ -53,9 +53,9 @@ const userLoginSchema = Joi.object({
 
 const userUpdateSchema = Joi.object({
   name: Joi.string().min(2).max(26).messages({
-    "string.base": "The name must be a string of 2 to 16 symbols.",
-    "string.min": "The name must be not less 6 symbols.",
-    "string.max": "The name must be no more 16 symbols.",
+    "string.base": "The name must be a string of 2 to 26 symbols.",
+    "string.min": "The name must be not less 2 symbols.",
+    "string.max": "The name must be no more 26 symbols.",
   }),
   birthday: Joi.string()
     .pattern(birthdayRegex)
