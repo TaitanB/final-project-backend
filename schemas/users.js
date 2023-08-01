@@ -1,6 +1,7 @@
 const Joi = require("joi");
 
 const {
+  nameRegex,
   passwordRegex,
   phoneRegex,
   birthdayRegex,
@@ -8,7 +9,7 @@ const {
 } = require("../constants/constants");
 
 const userRegisterSchema = Joi.object({
-  name: Joi.string().min(2).max(26).required().messages({
+  name: Joi.string().min(2).max(26).pattern(nameRegex).required().messages({
     "string.base": "The name must be a string of 2 to 26 symbols.",
     "any.required": "The name field is required.",
     "string.min": "The name must be not less 2 symbols.",
@@ -52,7 +53,7 @@ const userLoginSchema = Joi.object({
 });
 
 const userUpdateSchema = Joi.object({
-  name: Joi.string().min(2).max(26).messages({
+  name: Joi.string().min(2).max(26).pattern(nameRegex).messages({
     "string.base": "The name must be a string of 2 to 26 symbols.",
     "string.min": "The name must be not less 2 symbols.",
     "string.max": "The name must be no more 26 symbols.",
@@ -93,8 +94,9 @@ const userUpdateSchema = Joi.object({
     "string.base": "The phone must be a string.",
     "string.pattern.base": "The phone must be in format +380671234567.",
   }),
-  city: Joi.string().pattern(cityRegex).messages({
+  city: Joi.string().min(3).pattern(cityRegex).messages({
     "string.base": "The city must be a string.",
+    "string.min": "The city must be not less 3 symbols.",
   }),
   avatarURL: Joi.string().uri().messages({
     "string.base": "The avatarURL must be a string.",

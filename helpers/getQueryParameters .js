@@ -7,7 +7,7 @@ const getAgeInMonths = (age) => {
     case ageEnum.FROM_12_TO_24:
       return { min: 12, max: 24 };
     case ageEnum.MORE_THAN_24:
-      return { min: 24, max: 240 };
+      return { min: 24, max: 2400 };
     default:
       throw new Error("Invalid age parameter");
   }

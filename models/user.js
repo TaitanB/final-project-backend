@@ -8,7 +8,6 @@ const {
   passwordRegex,
   phoneRegex,
   cityRegex,
-  userNameRegex,
 } = require("../constants/constants");
 
 const userSchema = new Schema(
@@ -18,7 +17,7 @@ const userSchema = new Schema(
     },
     name: {
       type: String,
-      match: userNameRegex,
+      match: nameRegex,
       required: [true, "Name is required"],
     },
     email: {

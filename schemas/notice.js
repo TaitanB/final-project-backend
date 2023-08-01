@@ -19,9 +19,11 @@ const noticeSchema = Joi.object({
     .messages({
       "any.required": "The category field is required.",
     }),
-  name: Joi.string().pattern(nameRegex).required().messages({
-    "string.base": "The name must be a string of 2 to 16 symbols.",
+  name: Joi.string().min(2).max(26).pattern(nameRegex).required().messages({
+    "string.base": "The name must be a string of 2 to 26 symbols.",
     "any.required": "The name field is required.",
+    "string.min": "The type must be not less 2 symbols.",
+    "string.max": "The type must be no more 26 symbols.",
   }),
   date: Joi.string()
     .pattern(birthdayRegex)
@@ -72,9 +74,10 @@ const noticeSchema = Joi.object({
   sex: Joi.string().valid("male", "female").required().messages({
     "any.required": "The sex field is required.",
   }),
-  location: Joi.string().pattern(cityRegex).required().messages({
+  location: Joi.string().min(3).pattern(cityRegex).required().messages({
     "string.base": "The location must be a string.",
     "any.required": "The location field is required.",
+    "string.min": "The location must be not less 3 symbols.",
   }),
   price: Joi.number().when("category", {
     is: "sell",
