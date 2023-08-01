@@ -1,13 +1,17 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "version": "1.0.1",
-    "title": "Your Pet",
-    "description": "API for Your Pet application"
+    "title": "Your Pet App",
+    "description": "This is the Swagger documentation for interacting with our application's API.",
+    "contact": {
+      "name": "Your Pet App",
+      "url": "https://khailoandrey.github.io/final-project-frontend/"
+    },
+    "version": "1.0.1"
   },
   "externalDocs": {
-    "description": "Your Pet",
-    "url": "https://khailoandrey.github.io/final-project-frontend/"
+    "description": "API for Your Pet application",
+    "url": "https://github.com/TaitanB/final-project-backend"
   },
   "consumes": ["application/json", "multipart/form-data"],
   "produces": ["application/json"],

@@ -17,7 +17,7 @@ const getAll = async (req, res) => {
     queryParameters,
     "-name -type -comments -createdAt -updatedAt",
     { skip, limit }
-  );
+  ).sort({ createdAt: -1 });
 
   const formattedResult = result.map((notice) => ({
     ...notice._doc,

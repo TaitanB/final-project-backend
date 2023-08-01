@@ -21,7 +21,7 @@ const getFavorite = async (req, res) => {
     { ...queryParameters, _id: { $in: favorite } },
     "-name -type -comments -createdAt -updatedAt",
     { skip, limit }
-  );
+  ).sort({ createdAt: -1 });
 
   const formattedResult = favoriteNotices.map((notice) => ({
     ...notice._doc,

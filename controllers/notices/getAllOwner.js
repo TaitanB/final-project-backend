@@ -9,7 +9,7 @@ const getAllOwner = async (req, res) => {
   const skip = (page - 1) * limit;
 
   const queryParameters = getQueryParameters(req.query, owner);
-  console.log(queryParameters);
+
   const total = await Notice.countDocuments(queryParameters);
 
   const totalPages = Math.ceil(total / perPage);
@@ -18,7 +18,7 @@ const getAllOwner = async (req, res) => {
     queryParameters,
     "-name -type -comments -createdAt -updatedAt",
     { skip, limit }
-  );
+  ).sort({ createdAt: -1 });
 
   const formattedResult = result.map((notice) => ({
     ...notice._doc,
