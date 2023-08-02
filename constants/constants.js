@@ -11,7 +11,7 @@ const birthdayRegex = /^(0[1-9]|[12]\d|3[01])-(0[1-9]|1[0-2])-\d{4}$/;
 const perPage = 12;
 
 const ageEnum = {
-  FROM_3_TO_12: "3-12m",
+  FROM_0_TO_12: "0-12m",
   FROM_12_TO_24: "1-2y",
   MORE_THAN_24: ">2y",
 };

@@ -2,8 +2,8 @@ const { ageEnum } = require("../constants/constants");
 
 const getAgeInMonths = (age) => {
   switch (age) {
-    case ageEnum.FROM_3_TO_12:
-      return { min: 3, max: 12 };
+    case ageEnum.FROM_0_TO_12:
+      return { min: 0, max: 12 };
     case ageEnum.FROM_12_TO_24:
       return { min: 12, max: 24 };
     case ageEnum.MORE_THAN_24:
