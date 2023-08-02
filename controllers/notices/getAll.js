@@ -15,7 +15,7 @@ const getAll = async (req, res) => {
 
   const result = await Notice.find(
     queryParameters,
-    "-name -type -comments -createdAt -updatedAt",
+    "-name -type -comments -updatedAt",
     { skip, limit }
   ).sort({ createdAt: -1 });
 

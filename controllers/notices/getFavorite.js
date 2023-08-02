@@ -19,7 +19,7 @@ const getFavorite = async (req, res) => {
 
   const favoriteNotices = await Notice.find(
     { ...queryParameters, _id: { $in: favorite } },
-    "-name -type -comments -createdAt -updatedAt",
+    "-name -type -comments -updatedAt",
     { skip, limit }
   ).sort({ createdAt: -1 });
 
