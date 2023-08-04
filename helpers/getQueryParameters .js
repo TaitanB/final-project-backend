@@ -25,13 +25,17 @@ const getQueryParameters = (options = {}, owner) => {
     queryParameters.category = category;
   }
 
+  const andConditions = [];
+
   if (query) {
-    queryParameters.$or = [
-      { title: { $regex: query, $options: "i" } },
-      { comments: { $regex: query, $options: "i" } },
-      { location: { $regex: query, $options: "i" } },
-      { type: { $regex: query, $options: "i" } },
-    ];
+    andConditions.push({
+      $or: [
+        { title: { $regex: query, $options: "i" } },
+        { comments: { $regex: query, $options: "i" } },
+        { location: { $regex: query, $options: "i" } },
+        { type: { $regex: query, $options: "i" } },
+      ],
+    });
   }
 
   if (sex) {
@@ -55,7 +59,11 @@ const getQueryParameters = (options = {}, owner) => {
       };
     });
 
-    queryParameters.$or = ageConditions;
+    andConditions.push({ $or: ageConditions });
+  }
+
+  if (andConditions.length > 0) {
+    queryParameters.$and = andConditions;
   }
 
   return queryParameters;
