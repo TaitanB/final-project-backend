@@ -6,9 +6,9 @@
 <h2 align="center">This project was created using:</h2>
 
 <div align="center">
-<a href="https://nodejs.org/ru" target="_blank" rel="noreferrer"><img src="/tmp/nodejs_original.png" alt="nodejs" width="48"></a> &nbsp;
-<a href="http://expressjs.com/en" target="_blank" rel="noreferrer"><img src="/tmp/expressjs-logo.png" alt="expressjs" width="48"></a> &nbsp;
-<a href="https://www.mongodb.com/" target="_blank" rel="noreferrer"><img src="/tmp/mongodb-original.png" alt="MongoDB" width="48"></a> &nbsp;
+<a href="https://nodejs.org/ru" target="_blank" rel="noreferrer"><img src="/tmp/nodejs.png" alt="nodejs" width="48"></a> &nbsp;
+<a href="http://expressjs.com/en" target="_blank" rel="noreferrer"><img src="/tmp/icon-express-js.png" alt="expressjs" width="48"></a> &nbsp;
+<a href="https://www.mongodb.com/" target="_blank" rel="noreferrer"><img src="/tmp/mongodb.png" alt="MongoDB" width="48"></a> &nbsp;
 <a href="https://cloudinary.com/" target="_blank" rel="noreferrer"><img src="/tmp/cloudinary.png" alt="cloudinary" width="48"></a> &nbsp;
 <a href="https://swagger.io/docs/specification/about/" target="_blank" rel="noreferrer"><img src="/tmp/swagger.png" alt="swagger" width="48"></a>
 </div>
